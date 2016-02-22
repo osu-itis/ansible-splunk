@@ -2,5 +2,6 @@
 group_vars/*
 !group_vars/*/
 group_vars/*/*
+group_vars/.git
 !group_vars/*/README
 *.pyc
