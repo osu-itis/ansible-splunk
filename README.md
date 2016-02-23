@@ -1,12 +1,14 @@
 # Ansible Playbook for Splunk
-- **Authors**:	Mika Borner <mika.borner@gmail.com>
-- **Description**:	Ansible Playbook for Splunk
+- **Authors**: OSU-SIG sig@oregonstate.edu
+- **Description**:	Ansible Playbook for Splunk, forked from my2ndhead/ansible-playbook-splunk
 - **Version**: 		1.0
 
 
 # Instructions
 
 * See https://github.com/my2ndhead/ansible_playbook_splunk/wiki
+
+* clone group_vars from private repository
 
 
 ## License
