@@ -1,10 +1,9 @@
 - name: Install splunk shcmember
   hosts: shcmember
-  user: splunk
+  user: root
 
   roles:
     - conf/web
-    - conf/outputs
     - conf/server
     - group/shcmember
     - conf/server
