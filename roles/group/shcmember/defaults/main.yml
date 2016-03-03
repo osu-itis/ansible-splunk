@@ -1,0 +1,4 @@
+---
+cas_login_url: https://login.oregonstate.edu/cas-dev/login?gateway=true
+cas_validate_url: https://login.oregonstate.edu/cas-dev/proxyValidate
+server_name: "{{ ansible_fqdn }}"

@@ -1,4 +1,11 @@
 ---
+- include: install_yum_pkgs.yml
+  when: ansible_pkg_mgr == 'yum'
+
+- include: install_apt_pkgs.yml
+  when: ansible_pkg_mgr == 'apt'
+
+- include: conf_httpd.yml
 - include: restart_shcmember.yml
 - include: init.yml
 - include: restart_shcmember.yml

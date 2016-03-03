@@ -1,0 +1,14 @@
+---
+- apache2_module: state=present name={{item}}
+  with_items:
+    - proxy
+    - proxy_http
+    - auth_cas
+
+- name: configure reverse proxy vhost
+  template: src=templates/000-default.conf.j2 dest=/etc/apache2/sites-available/000-default.conf owner=root group=root mode=0644
+  notify:
+    - restart httpd
+
+- name: enable httpd
+  service: name=apache2 state=running enabled=yes

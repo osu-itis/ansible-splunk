@@ -4,5 +4,4 @@
 
   roles:
     - conf/web
-    - conf/outputs
     - conf/server

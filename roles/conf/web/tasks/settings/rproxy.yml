@@ -1,0 +1,93 @@
+---
+#####################################################################################################################
+# Configurations for Splunk web.conf
+#####################################################################################################################
+
+#####################################################################################################################
+# [settings]
+#####################################################################################################################
+
+# trustedIP
+
+- name: "Configure web.conf [settings] - trustedIP state=present"
+  ini_file: dest="{{ splunk_conf_path }}/web.conf"
+            section=settings
+            option=trustedIP
+            value="{{ ansible_all_ipv4_addresses|join(","),splunk_web_conf.settings.trustedIP }}"
+            state=present
+  when: splunk_web_conf.settings.trustedIP is defined
+  notify: splunk restart
+
+- name: "Configure web.conf [settings] - trustedIP state=absent (default)"
+  ini_file: dest="{{ splunk_conf_path }}/web.conf"
+            section=settings
+            option=trustedIP
+            state=absent
+  when: splunk_web_conf.settings.trustedIP is undefined
+  notify: splunk restart
+
+
+# SSOMode
+
+- name: "Configure web.conf [settings] - SSOMode state=present"
+  ini_file: dest="{{ splunk_conf_path }}/web.conf"
+            section=settings
+            option=SSOMode
+            value={{ splunk_web_conf.settings.SSOMode }}
+            state=present
+  when: splunk_web_conf.settings.SSOMode is defined and
+        splunk_web_conf.settings.SSOMode != "strict"
+  notify: splunk restart
+
+- name: "Configure web.conf [settings] - SSOMode state=absent (default)"
+  ini_file: dest="{{ splunk_conf_path }}/web.conf"
+            section=settings
+            option=SSOMode
+            state=absent
+  when: splunk_web_conf.settings.SSOMode is undefined or
+        splunk_web_conf.settings.SSOMode == "strict"
+  notify: splunk restart
+
+
+# remoteUser
+
+- name: "Configure web.conf [settings] - remoteUser state=present"
+  ini_file: dest="{{ splunk_conf_path }}/web.conf"
+            section=settings
+            option=remoteUser
+            value={{ splunk_web_conf.settings.remoteUser }}
+            state=present
+  when: splunk_web_conf.settings.remoteUser is defined and
+        splunk_web_conf.settings.remoteUser != "REMOTE_USER"
+  notify: splunk restart
+
+- name: "Configure web.conf [settings] - remoteUser state=absent (default)"
+  ini_file: dest="{{ splunk_conf_path }}/web.conf"
+            section=settings
+            option=remoteUser
+            state=absent
+  when: splunk_web_conf.settings.remoteUser is undefined or
+        splunk_web_conf.settings.remoteUser == "REMOTE_USER"
+  notify: splunk restart
+
+
+# enableWebDebug
+
+- name: "Configure web.conf [settings] - enableWebDebug state=present"
+  ini_file: dest="{{ splunk_conf_path }}/web.conf"
+            section=settings
+            option=enableWebDebug
+            value={{ splunk_web_conf.settings.enableWebDebug }}
+            state=present
+  when: splunk_web_conf.settings.enableWebDebug is defined and
+        splunk_web_conf.settings.enableWebDebug != "false"
+  notify: splunk restart
+
+- name: "Configure web.conf [settings] - enableWebDebug state=absent (default)"
+  ini_file: dest="{{ splunk_conf_path }}/web.conf"
+            section=settings
+            option=enableWebDebug
+            state=absent
+  when: splunk_web_conf.settings.enableWebDebug is undefined or
+        splunk_web_conf.settings.enableWebDebug == "false"
+  notify: splunk restart

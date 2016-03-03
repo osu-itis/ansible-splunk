@@ -1,0 +1,26 @@
+<VirtualHost *:80>
+        ServerName {{ server_name }}
+        DocumentRoot /var/www/html
+        CASCookiePath /var/cache/apache2/mod_auth_cas/
+        CASLoginURL {{ cas_login_url }}
+        CASValidateURL {{ cas_validate_url }}
+        <Location />
+                Authtype CAS
+                require valid-user
+                CASAuthNHeader Cas-User
+        </Location>
+        ProxyPreserveHost On
+        ProxyPass / http://localhost:8000/
+        ProxyPassReverse / http://localhost:8000/
+
+
+        # Available loglevels: trace8, ..., trace1, debug, info, notice, warn,
+        # error, crit, alert, emerg.
+        # It is also possible to configure the loglevel for particular
+        # modules, e.g.
+        #LogLevel info ssl:warn
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+</VirtualHost>
