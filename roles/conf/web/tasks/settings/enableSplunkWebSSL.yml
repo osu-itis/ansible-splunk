@@ -11,7 +11,7 @@
 
 - name: "Configure web.conf [settings] - enableSplunkWebSSL state=present"
   ini_file: dest="{{ splunk_conf_path }}/web.conf"
-            section=settings option=enableSplunkWebSSL 
+            section=settings option=enableSplunkWebSSL
             value={{ splunk_web_conf.settings.enableSplunkWebSSL }}
             state=present
   when: splunk_web_conf.settings.enableSplunkWebSSL is defined and
@@ -23,6 +23,6 @@
             section=settings
             option=enableSplunkWebSSL
             state=absent
-  when:  splunk_web_conf.settings.enableSplunkWebSSL is undefined or 
+  when:  splunk_web_conf.settings.enableSplunkWebSSL is undefined or
          splunk_web_conf.settings.enableSplunkWebSSL == false
   notify: splunk restart

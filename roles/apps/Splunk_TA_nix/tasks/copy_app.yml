@@ -20,7 +20,7 @@
   when: "{{ item.value.install }} == true"
   with_dict: "{{ vars['app_name'] }} | app_default"
 
-- name: Remove temporary file 
+- name: Remove temporary file
   file: path="{{ splunk_installation.remote_app_temp_path }}/{{ item.value.bundle }}"
         state=absent
   when: "{{ item.value.install }} == true"
