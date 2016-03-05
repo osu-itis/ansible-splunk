@@ -15,7 +15,7 @@
             option=httpport
             value={{ splunk_web_conf.settings.httpport }}
             state=present
-  when: splunk_web_conf.settings.httpport is defined and 
+  when: splunk_web_conf.settings.httpport is defined and
         splunk_web_conf.settings.httpport != 8000
   notify: splunk restart
 

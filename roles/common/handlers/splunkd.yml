@@ -13,4 +13,3 @@
   shell: "{{ splunk_installation.splunk_home_path }}/bin/splunk restart"
   when: splunk_restart is defined and
         splunk_restart
-        

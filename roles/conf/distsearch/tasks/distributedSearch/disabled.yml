@@ -24,6 +24,6 @@
             section=distributedSearch
             option=disabled
             state=absent
-  when:  splunk_distsearch_conf.distributedSearch.disabled is undefined or 
+  when:  splunk_distsearch_conf.distributedSearch.disabled is undefined or
          splunk_distsearch_conf.distributedSearch.disabled == false
   notify: splunk restart
