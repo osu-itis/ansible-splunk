@@ -6,7 +6,7 @@
   when: splunk_installation.package_format != "rpm"
 
 - name: Create Splunk unix user
-  user: name=splunk 
+  user: name=splunk
         group=splunk
         state=present
         comment="Splunk Server"
@@ -21,7 +21,7 @@
         mode=600
 
 - name: Install Splunk package from rpm
-  yum: name="{{ splunk_installation.remote_package_temp_path }}/{{ splunk_installation.package_file }}" 
+  yum: name="{{ splunk_installation.remote_package_temp_path }}/{{ splunk_installation.package_file }}"
        state=present
   when: splunk_installation.package_format == "rpm"
 
@@ -32,11 +32,12 @@
   when:  splunk_installation.package_format == "tgz"
 
 - name: Remove Splunk package
-  command: rm "{{ splunk_installation.remote_package_temp_path }}/{{ splunk_installation.package_file }}"
+  file: path="{{ splunk_installation.remote_package_temp_path }}/{{ splunk_installation.package_file }}"
+        state=absent
   when: splunk_installation.delete_package_after_install != false
 
-- name: Set permissions for $SPLUNK_HOME 
-  file: path="{{ splunk_installation.splunk_home_path }}" 
+- name: Set permissions for $SPLUNK_HOME
+  file: path="{{ splunk_installation.splunk_home_path }}"
         owner=splunk
         group=splunk
         recurse=yes

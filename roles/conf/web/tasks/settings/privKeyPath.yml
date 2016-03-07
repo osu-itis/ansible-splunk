@@ -24,6 +24,6 @@
             section=settings
             option=privKeyPath
             state=absent
-  when: splunk_web_conf.settings.privKeyPath is undefined or 
+  when: splunk_web_conf.settings.privKeyPath is undefined or
         splunk_web_conf.settings.privKeyPath == "etc/auth/splunkweb/privkey.pem"
   notify: splunk restart

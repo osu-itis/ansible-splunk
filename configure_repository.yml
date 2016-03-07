@@ -5,7 +5,7 @@
   - name: Create repository root directory
     file: path="{{ splunk_repository.repository_root }}"
           state=directory
-  
+
   - name: Create repository apps directory
     file: path="{{ splunk_repository.repository_root }}/apps"
           state=directory
@@ -24,15 +24,15 @@
 
   - name: Create licenses/enterprise directory
     file: path="{{ splunk_repository.repository_root }}/licenses/enterprise"
-          state=directory   
+          state=directory
 
   - name: Set repository owner/group
-    file: path={{ splunk_repository.repository_root }} 
-          recurse=yes 
-          owner={{ splunk_repository.repository_owner }} 
+    file: path={{ splunk_repository.repository_root }}
+          recurse=yes
+          owner={{ splunk_repository.repository_owner }}
           group={{ splunk_repository.repository_group }}
 
   - name: Set repository directory mode
-    file: path={{ splunk_repository.repository_root }} 
+    file: path={{ splunk_repository.repository_root }}
           mode=750
 
