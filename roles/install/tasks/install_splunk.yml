@@ -32,7 +32,8 @@
   when:  splunk_installation.package_format == "tgz"
 
 - name: Remove Splunk package
-  command: rm "{{ splunk_installation.remote_package_temp_path }}/{{ splunk_installation.package_file }}"
+  file: path="{{ splunk_installation.remote_package_temp_path }}/{{ splunk_installation.package_file }}"
+        state=absent
   when: splunk_installation.delete_package_after_install != false
 
 - name: Set permissions for $SPLUNK_HOME
