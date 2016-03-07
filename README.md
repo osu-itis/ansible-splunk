@@ -3,6 +3,8 @@
 - **Description**:	Ansible Playbook for Splunk, forked from my2ndhead/ansible-playbook-splunk
 - **Version**: 		1.0
 
+[![Build Status](https://jenkins.sig.oregonstate.edu/job/lint%20ansible-splunk/badge/icon)](https://jenkins.sig.oregonstate.edu/job/lint%20ansible-splunk/)
+
 
 # Instructions
 
