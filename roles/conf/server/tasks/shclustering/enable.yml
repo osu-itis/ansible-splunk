@@ -1,0 +1,27 @@
+---
+#####################################################################################################################
+# Configurations for Splunk server.conf
+#####################################################################################################################
+
+#####################################################################################################################
+# [shclustering]
+#####################################################################################################################
+
+# disabled
+
+- name: "Configure server.conf [shclustering] - disabled state=present"
+  ini_file: dest={{ splunk_conf_path }}/server.conf
+            section=shclustering
+            option=disabled
+            value={{ splunk_server_conf.shclustering.disabled }}
+            state=present
+  when: splunk_server_conf.shclustering.disabled is defined
+  notify: splunk restart
+
+- name: "Configure server.conf [shclustering] - disabled state=absent"
+  ini_file: dest={{ splunk_conf_path }}/server.conf
+            section=shclustering
+            option=disabled
+            state=absent
+  when: splunk_server_conf.shclustering.disabled is undefined
+  notify: splunk restart
