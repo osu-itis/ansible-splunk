@@ -24,7 +24,7 @@
             options=servers
             value="{{ splunk_distsearch.conf.distributedSearch.servers.groups[searchhead] | create_distsearch_servers }}"
             state=present
-  when: splunk_distsearch_conf.distributedSearch.servers.groups[searchhead] is defined
+  when: splunk_distsearch_conf.distributedSearch.servers is defined
   notify: splunk restart
 
 - name: "Configure distsearch.conf [distributedSearch] - server state=absent (default)"
