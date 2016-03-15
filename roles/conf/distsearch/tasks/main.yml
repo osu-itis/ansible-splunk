@@ -2,4 +2,12 @@
 - include: touch.yml
 - include: distributedSearch/disabled.yml
 - include: distributedSearch/server.yml
+- include: distributedSearch/searchhead.yml
+- include: distributedSearch/clustermaster.yml
+- include: distributedSearch/licensemaster.yml
+- include: distributedSearch/deploymentserver.yml
+- include: distributedSearch/deployer.yml
+- include: distributedSearch/cluster.yml
+- include: distributedSearch/shcmember.yml
+- include: distributedSearch/peernode.yml
 
