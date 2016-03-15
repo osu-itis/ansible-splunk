@@ -1,0 +1,21 @@
+---
+# Configuration for Splunk distsearch.conf
+#
+# peernode
+
+- name: "Configure distsearch.conf [distributedSearch] - peernode state=present"
+  ini_file: dest={{ splunk_conf_path }}/distsearch.conf
+            section="distributedSearch:dmc_group_indexer"
+            option=servers
+            value="{{ groups['peernode'] | create_distsearch_servers }}"
+            state=present
+  when: splunk_distsearch_conf.distributedSearch.servers is defined
+  notify: splunk restart
+
+- name: "Configure distsearch.conf [distributedSearch] - peernode state=absent (default)"
+  ini_file: dest={{ splunk_conf_path }}/distsearch.conf
+            section="distributedSearch:dmc_group_indexer"
+            option=servers
+            state=absent
+  when: splunk_distsearch_conf.distributedSearch.servers is undefined
+  notify: splunk restart

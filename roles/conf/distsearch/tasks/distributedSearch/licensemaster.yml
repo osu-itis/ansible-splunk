@@ -1,0 +1,21 @@
+---
+# Configurations for Splunk distsearch.conf
+#
+# licensemaster
+
+- name: "Configure distsearch.conf [distributedSearch] - licensemaster state=present"
+  ini_file: dest={{ splunk_conf_path }}/distsearch.conf
+            section="distributedSearch:dmc_group_license_master"
+            option=servers
+            value="{{ groups['licensemaster'] | create_distsearch_servers }}"
+            state=present
+  when: splunk_distsearch_conf.distributedSearch.servers is defined
+  notify: splunk restart
+
+- name: "Configure distsearch.conf [distributedSearch] - licensemaster state=absent (default)"
+  ini_file: dest={{ splunk_conf_path }}/distsearch.conf
+            section="distributedSearch:dmc_group_license_master"
+            option=servers
+            state=absent
+  when: splunk_distsearch_conf.distributedSearch.servers is undefined
+  notify: splunk restart
