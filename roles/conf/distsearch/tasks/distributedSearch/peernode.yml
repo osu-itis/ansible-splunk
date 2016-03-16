@@ -9,7 +9,7 @@
             option=servers
             value="{{ groups['peernode'] | create_distsearch_servers }}"
             state=present
-  when: splunk_distsearch_conf.distributedSearch.servers is defined
+  when:  groups['peernode'] is defined
   notify: splunk restart
 
 - name: "Configure distsearch.conf [distributedSearch] - default indexer"
@@ -25,5 +25,5 @@
             section="distributedSearch:dmc_group_indexer"
             option=servers
             state=absent
-  when: splunk_distsearch_conf.distributedSearch.servers is undefined
+  when: groups['peernode'] is undefined
   notify: splunk restart

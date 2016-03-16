@@ -9,7 +9,7 @@
             option=servers
             value="{{ groups['cluster'] | create_distsearch_servers }}"
             state=present
-  when: splunk_distsearch_conf.distributedSearch.servers is defined
+  when: groups['cluster'] is defined
   notify: splunk restart
 
 - name: "Configure distsearch.conf [distributedSearch] - indexcluster state=absent (default)"
@@ -17,5 +17,5 @@
             section="distributedSearch:dmc_indexerclustergroup_{{ osu_environment }}"
             option=servers
             state=absent
-  when: splunk_distsearch_conf.distributedSearch.servers is undefined
+  when: groups['cluster'] is undefined
   notify: splunk restart

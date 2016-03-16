@@ -9,7 +9,7 @@
             option=servers
             value="{{ groups['masternode'] | create_distsearch_servers }}"
             state=present
-  when: splunk_distsearch_conf.distributedSearch.servers is defined
+  when: groups['masternode'] is defined
   notify: splunk restart
 
 - name: "Configure distsearch.conf masternode [distributedSearch] - masternode state=absent (default)"
@@ -17,5 +17,5 @@
             section="distributedSearch:dmc_group_cluster_master"
             option=servers
             state=absent
-  when: splunk_distsearch_conf.distributedSearch.servers is undefined
+  when: groups['masternode'] is undefined
   notify: splunk restart

@@ -9,7 +9,7 @@
             option=servers
             value="{{ groups['shcmember'] | create_distsearch_servers }}"
             state=present
-  when: splunk_distsearch_conf.distributedSearch.servers is defined
+  when: groups['shcmember'] is defined
   notify: splunk restart
 
 - name: "Configure distsearch.conf [distributedSearch] - shcmember state=absent (default)"
@@ -17,5 +17,5 @@
             section="distributedSearch:dmc_searchheadclustergroup_{{ osu_environment }}"
             option=servers
             state=absent
-  when: splunk_distsearch_conf.distributedSearch.servers is undefined
+  when: groups['shcmember'] is undefined
   notify: splunk restart

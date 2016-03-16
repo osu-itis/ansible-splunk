@@ -17,5 +17,5 @@
             section="distributedSearch:dmc_group_deployment_server"
             option=servers
             state=absent
-  when: splunk_distsearch_conf.distributedSearch.servers is undefined
+  when: groups['deploymentserver'] is undefined
   notify: splunk restart
