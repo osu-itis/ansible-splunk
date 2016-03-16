@@ -9,7 +9,7 @@
             option=servers
             value="{{ groups['deploymentserver'] | create_distsearch_servers }}"
             state=present
-  when: splunk_distsearch_conf.distributedSearch.servers is defined
+  when: groups['deploymentserver'] is defined
   notify: splunk restart
 
 - name: "Configure distsearch.conf [distributedSearch] - deploymentserver state=absent (default)"
