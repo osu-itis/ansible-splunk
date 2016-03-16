@@ -1,0 +1,365 @@
+---
+
+# this sucks, but it was easier...
+
+- name: "Configure authentication.conf [strategy] SSLEnabled state=present"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=SSLEnabled
+            value={{ item.value.SSLEnabled }}
+            state=present
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.SSLEnabled is defined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] SSLEnabled state=absent (default)"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=SSLEnabled
+            state=absent
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.SSLEnabled is undefined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] anonymous_referrals state=present"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=anonymous_referrals
+            value={{ item.value.anonymous_referrals }}
+            state=present
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.anonymous_referrals is defined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] anonymous_referrals state=absent (default)"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=anonymous_referrals
+            state=absent
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.anonymous_referrals is undefined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] bindDN state=present"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=bindDN
+            value={{ item.value.bindDN }}
+            state=present
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.bindDN is defined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] bindDN state=absent (default)"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=bindDN
+            state=absent
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.bindDN is undefined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] bindDNpassword state=present"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=bindDNpassword
+            value={{ item.value.bindDNpassword }}
+            state=present
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.bindDNpassword is defined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] bindDNpassword state=absent (default)"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=bindDNpassword
+            state=absent
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.bindDNpassword is undefined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] charset state=present"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=charset
+            value={{ item.value.charset }}
+            state=present
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.charset is defined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] charset state=absent (default)"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=charset
+            state=absent
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.charset is undefined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] emailAttribute state=present"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=emailAttribute
+            value={{ item.value.emailAttribute }}
+            state=present
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.emailAttribute is defined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] emailAttribute state=absent (default)"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=emailAttribute
+            state=absent
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.emailAttribute is undefined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] groupBaseDN state=present"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=groupBaseDN
+            value={{ item.value.groupBaseDN }}
+            state=present
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.groupBaseDN is defined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] groupBaseDN state=absent (default)"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=groupBaseDN
+            state=absent
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.groupBaseDN is undefined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] groupMappingAttribute state=present"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=groupMappingAttribute
+            value={{ item.value.groupMappingAttribute }}
+            state=present
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.groupMappingAttribute is defined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] groupMappingAttribute state=absent (default)"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=groupMappingAttribute
+            state=absent
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.groupMappingAttribute is undefined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] groupMemberAttribute state=present"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=groupMemberAttribute
+            value={{ item.value.groupMemberAttribute }}
+            state=present
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.groupMemberAttribute is defined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] groupMemberAttribute state=absent (default)"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=groupMemberAttribute
+            state=absent
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.groupMemberAttribute is undefined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] groupNameAttribute state=present"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=groupNameAttribute
+            value={{ item.value.groupNameAttribute }}
+            state=present
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.groupNameAttribute is defined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] groupNameAttribute state=absent (default)"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=groupNameAttribute
+            state=absent
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.groupNameAttribute is undefined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] host state=present"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=host
+            value={{ item.value.host }}
+            state=present
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.host is defined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] host state=absent (default)"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=host
+            state=absent
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.host is undefined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] nestedGroups state=present"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=nestedGroups
+            value={{ item.value.nestedGroups }}
+            state=present
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.nestedGroups is defined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] nestedGroups state=absent (default)"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=nestedGroups
+            state=absent
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.nestedGroups is undefined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] network_timeout state=present"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=network_timeout
+            value={{ item.value.network_timeout }}
+            state=present
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.network_timeout is defined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] network_timeout state=absent (default)"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=network_timeout
+            state=absent
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.network_timeout is undefined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] port state=present"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=port
+            value={{ item.value.port }}
+            state=present
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.port is defined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] port state=absent (default)"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=port
+            state=absent
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.port is undefined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] realNameAttribute state=present"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=realNameAttribute
+            value={{ item.value.realNameAttribute }}
+            state=present
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.realNameAttribute is defined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] realNameAttribute state=absent (default)"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=realNameAttribute
+            state=absent
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.realNameAttribute is undefined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] sizelimit state=present"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=sizelimit
+            value={{ item.value.sizelimit }}
+            state=present
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.sizelimit is defined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] sizelimit state=absent (default)"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=sizelimit
+            state=absent
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.sizelimit is undefined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] timelimit state=present"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=timelimit
+            value={{ item.value.timelimit }}
+            state=present
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.timelimit is defined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] timelimit state=absent (default)"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=timelimit
+            state=absent
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.timelimit is undefined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] userBaseDN state=present"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=userBaseDN
+            value={{ item.value.userBaseDN }}
+            state=present
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.userBaseDN is defined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] userBaseDN state=absent (default)"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=userBaseDN
+            state=absent
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.userBaseDN is undefined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] userNameAttribute state=present"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=userNameAttribute
+            value={{ item.value.userNameAttribute }}
+            state=present
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.userNameAttribute is defined
+  notify: splunk restart
+
+- name: "Configure authentication.conf [strategy] userNameAttribute state=absent (default)"
+  ini_file: dest={{ splunk_conf_path }}/authentication.conf
+            section={{ item.key }}
+            option=userNameAttribute
+            state=absent
+  with_dict: "{{ splunk_auth_conf.strategies }}"
+  when: splunk_auth_conf.strategies.{{ item.key }}.userNameAttribute is undefined
+  notify: splunk restart
+
