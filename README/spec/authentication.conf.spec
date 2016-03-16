@@ -24,7 +24,7 @@ splunk_auth_conf:
       userNameAttribute: samaccountname
 
   auth:
-    authSettings = 'test'
+    authSettings = 'test_server'
     authType = LDAP
   rolemaps:
     test_server:

@@ -1,2 +1,4 @@
 ---
 - include: strategies.yml
+- include: auth.yml
+- include: rolemaps.yml
