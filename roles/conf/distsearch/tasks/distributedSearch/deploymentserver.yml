@@ -1,0 +1,21 @@
+---
+# Configuration for Splunk distsearch.conf
+#
+# deploymentserver
+
+- name: "Configure distsearch.conf [distributedSearch] - deploymentserver state=present"
+  ini_file: dest={{ splunk_conf_path }}/distsearch.conf
+            section="distributedSearch:dmc_group_deployment_server"
+            option=servers
+            value="{{ groups['deploymentserver'] | create_distsearch_servers }}"
+            state=present
+  when: groups['deploymentserver'] is defined
+  notify: splunk restart
+
+- name: "Configure distsearch.conf [distributedSearch] - deploymentserver state=absent (default)"
+  ini_file: dest={{ splunk_conf_path }}/distsearch.conf
+            section="distributedSearch:dmc_group_deployment_server"
+            option=servers
+            state=absent
+  when: groups['deploymentserver'] is undefined
+  notify: splunk restart

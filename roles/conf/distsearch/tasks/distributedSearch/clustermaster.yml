@@ -1,0 +1,21 @@
+---
+# Configuration for Splunk distsearch.conf
+#
+# clustermaster
+
+- name: "Configure distsearch.conf masternode [distributedSearch] - masternode state=present"
+  ini_file: dest={{ splunk_conf_path }}/distsearch.conf
+            section="distributedSearch:dmc_group_cluster_master"
+            option=servers
+            value="{{ groups['masternode'] | create_distsearch_servers }}"
+            state=present
+  when: groups['masternode'] is defined
+  notify: splunk restart
+
+- name: "Configure distsearch.conf masternode [distributedSearch] - masternode state=absent (default)"
+  ini_file: dest={{ splunk_conf_path }}/distsearch.conf
+            section="distributedSearch:dmc_group_cluster_master"
+            option=servers
+            state=absent
+  when: groups['masternode'] is undefined
+  notify: splunk restart

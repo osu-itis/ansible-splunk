@@ -9,11 +9,14 @@
 
 # server
 
+
 - name: "Configure distsearch.conf [distributedSearch] - server state=present"
+  vars:
+    distsearchpeers: "{{ groups['shcmember'] }}, {{ groups['licensemaster'] }}, {{ groups['masternode'] }}"
   ini_file: dest={{ splunk_conf_path }}/distsearch.conf
             section=distributedSearch
             option=servers
-            value="{{ splunk_distsearch_conf.distributedSearch.servers | create_distsearch_servers  }}"
+            value="{{ distsearchpeers | create_distsearch_servers  }}"
             state=present
   when: splunk_distsearch_conf.distributedSearch.servers is defined
   notify: splunk restart
@@ -21,7 +24,7 @@
 - name: "Configure distsearch.conf [distributedSearch] - server state=absent (default)"
   ini_file: dest={{ splunk_conf_path }}/distsearch.conf
             section=distributedSearch
-            option=server
+            option=servers
             state=absent
   when: splunk_distsearch_conf.distributedSearch.servers is undefined
   notify: splunk restart
