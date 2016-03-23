@@ -1,6 +1,7 @@
 ---
 - include: touch.yml
 - include: tcpout/defaultGroup.yml
+- include: tcpout/indexAndForward.yml
 - include: tcpout:target_group/indexerDiscovery.yml
 - include: tcpout:target_group/server.yml
 - include: tcpout:target_group/sslCertPath.yml
@@ -8,5 +9,6 @@
 - include: tcpout:target_group/sslRootCAPath.yml
 - include: tcpout:target_group/sslVerifyServerCert.yml
 - include: tcpout:target_group/useAck.yml
+- include: indexAndForward.yml
 - include: indexer_discovery/pass4SymmKey.yml
 - include: indexer_discovery/master_uri.yml
