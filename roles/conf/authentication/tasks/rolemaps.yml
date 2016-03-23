@@ -4,7 +4,7 @@
 
 - name: "Configure authentication.conf [roleMap_<strategy>] - state=present"
   ini_file: dest={{ splunk_conf_path }}/authentication.conf
-            section=roleMap{{ item.strategy }}
+            section=roleMap_{{ item.strategy }}
             option={{ item.role }}
             value={{ item.group }}
             state=present
