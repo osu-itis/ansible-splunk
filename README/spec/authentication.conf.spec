@@ -26,6 +26,12 @@ splunk_auth_conf:
   auth:
     authSettings: test_server
     authType: LDAP
+
   rolemaps:
-    test_server:
-      admin: some_ldap_group
+    - strategy: test_server
+      role: admin
+      group: some_ldap_group
+    - strategy: test_server
+      role: user
+      group: some_other_group
+
