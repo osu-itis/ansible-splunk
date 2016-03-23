@@ -1,0 +1,16 @@
+- name: "Configure outputs.conf [tcpout] - indexAndForward state=present"
+  ini_file: dest={{ splunk_conf_path }}/outputs.conf
+            section=tcpout
+            option=indexAndForward
+            value={{ splunk_outputs_conf.tcpout.indexAndForward }}
+            state=present
+  when: splunk_outputs_conf.tcpout.indexAndForward is defined
+  notify: splunk restart
+
+- name: "Configure outputs.conf [tcpout] - indexAndForward state=absent (default)"
+  ini_file: dest={{ splunk_conf_path }}/outputs.conf
+            section=tcpout
+            option=indexAndForward
+            state=absent
+  when: splunk_outputs_conf.tcpout.indexAndForward is undefined
+  notify: splunk restart
