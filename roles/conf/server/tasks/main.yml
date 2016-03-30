@@ -21,7 +21,6 @@
 - include: shclustering/conf_deploy_fetch_url.yml
 - include: shclustering/enable.yml
 - include: shclustering/election.yml
-- include: shclustering/id.yml
 - include: shclustering/mgmt_uri.yml
 - include: shclustering/pass4SymmKey.yml
 - include: shclustering/replication_factor.yml
