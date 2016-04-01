@@ -1,0 +1,16 @@
+- name: "Configure outputs.conf [indexAndForward] - index state=present"
+  ini_file: dest={{ splunk_conf_path }}/outputs.conf
+            section=indexAndForward
+            option=index
+            value={{ splunk_outputs_conf.indexAndForward.index }}
+            state=present
+  when: splunk_outputs_conf.indexAndForward.index is defined
+  notify: splunk restart
+
+- name: "Configure outputs.conf [indexAndForward] - index state=absent (default)"
+  ini_file: dest={{ splunk_conf_path }}/outputs.conf
+            section=indexAndForward
+            option=index
+            state=absent
+  when: splunk_outputs_conf.indexAndForward.index is undefined
+  notify: splunk restart

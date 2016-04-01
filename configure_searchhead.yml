@@ -5,4 +5,5 @@
   roles:
     - group/searchhead
     - conf/web
+    - conf/outputs
     - conf/server
