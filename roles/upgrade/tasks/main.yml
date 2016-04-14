@@ -27,3 +27,10 @@
         group=splunk
         recurse=yes
   when: splunk_installation.package_format == "tgz"
+
+- name: splunk stop
+  shell: "{{ splunk_installation.splunk_home_path }}/bin/splunk stop"
+
+- name: splunk start
+  shell: "{{ splunk_installation.splunk_home_path }}/bin/splunk start --accept-license --answer-yes"
+
