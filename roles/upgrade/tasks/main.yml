@@ -30,7 +30,10 @@
 
 - name: splunk stop
   shell: "{{ splunk_installation.splunk_home_path }}/bin/splunk stop"
+  become: yes
+  become_user: splunk
 
 - name: splunk start
   shell: "{{ splunk_installation.splunk_home_path }}/bin/splunk start --accept-license --answer-yes"
-
+  become: yes
+  become_user: splunk
