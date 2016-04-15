@@ -1,0 +1,6 @@
+- name: Upgrade Splunk on all hosts
+  hosts: "*:!repository"
+  remote_user: root
+
+  roles:
+    - upgrade
