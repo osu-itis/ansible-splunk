@@ -1,5 +1,6 @@
 ---
 - include: touch.yml
+- include: clustering/pass4SymmKey.yml
 - include: clustering/available_sites.yml
 - include: clustering/cluster_label.yml
 - include: clustering/master_uri.yml
