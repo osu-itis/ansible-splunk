@@ -1,0 +1,6 @@
+- name: Configure splunk indexer cluster indexes
+  hosts: masternode
+  user: splunk
+
+  roles:
+    - conf/indexes

@@ -1,0 +1,7 @@
+---
+
+- name: create indexes.conf on indexer cluster master
+  template:  src=templates/indexes.conf.j2 dest=/opt/splunk/etc/master-apps/_cluster/indexes.conf owner=splunk group=splunk mode=0644
+
+- name: push bundle to indexer cluster members
+  command: /opt/splunk/bin/splunk apply cluster-bundle --answer-yes
