@@ -10,6 +10,7 @@
 
 - name: create indexes.conf non-clustered host
   template:  src=templates/indexes.conf.j2 dest=/opt/splunk/etc/system/local/indexes.conf owner=splunk group=splunk mode=0644
+  notify: splunk restart
   when: indexes is defined
 
 - name: push bundle to indexer cluster members

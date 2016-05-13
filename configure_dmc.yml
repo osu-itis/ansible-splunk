@@ -7,4 +7,5 @@
     - conf/outputs
     - conf/server
     - conf/distsearch
+    - conf/indexes
     - group/searchhead
