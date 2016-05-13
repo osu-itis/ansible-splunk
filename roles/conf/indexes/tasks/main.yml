@@ -1,7 +1,17 @@
 ---
 
-- name: create indexes.conf on indexer cluster master
-  template:  src=templates/indexes.conf.j2 dest=/opt/splunk/etc/master-apps/_cluster/indexes.conf owner=splunk group=splunk mode=0644
+- name: create indexes.conf on indexer cluster master - _cluster
+  template:  src=templates/cluster_indexes.conf.j2 dest=/opt/splunk/etc/master-apps/_cluster/local/indexes.conf owner=splunk group=splunk mode=0644
+  when: cluster_indexes is defined
+
+- name: create indexes.conf on indexer cluster master - system
+  template:  src=templates/cluster_system_indexes.conf.j2 dest=/opt/splunk/etc/master-apps/system/local/indexes.conf owner=splunk group=splunk mode=0644
+  when: cluster_system_indexes is defined
+
+- name: create indexes.conf non-clustered host
+  template:  src=templates/indexes.conf.j2 dest=/opt/splunk/etc/system/local/indexes.conf owner=splunk group=splunk mode=0644
+  when: indexes is defined
 
 - name: push bundle to indexer cluster members
   command: /opt/splunk/bin/splunk apply cluster-bundle --answer-yes
+  when: cluster_indexes is defined or cluster_system_indexes is defined
