@@ -28,7 +28,7 @@
   ufw: rule=deny port=8000 proto=tcp src=any
   when: "'heavyforwarder' in group_names"
 
-- name: allow heavy forwarder syslog access
+- name: allow heavy forwarder access
   ufw: rule=allow src={{ item }}
   when: "'heavyforwarder' in group_names"
   with_items: "{{splunk_fw.forwarder_allow}}"
