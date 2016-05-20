@@ -24,3 +24,7 @@
   ufw: rule=allow port=514 proto=tcp src={{ item }}
   when: groups['heavyforwarder'] is defined
   with_items: "{{splunk_fw.forwarder_allow}}"
+
+- name: allow all nodes to talk to each other
+  ufw: rule=allow src={{ item }}
+  with_items: "{{splunk_fw.splunk_allow}}"
