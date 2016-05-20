@@ -20,8 +20,16 @@
   when: "'licensemaster' in group_names"
   with_items: "{{splunk_fw.lm_allow}}"
 
+- name: deny ssh to heavyforwarder all
+  ufw: rule=deny port=22 proto=tcp src=any
+  when: "'heavyforwarder' in group_names"
+
+- name: deny mgmt to heavyforwarder all
+  ufw: rule=deny port=8000 proto=tcp src=any
+  when: "'heavyforwarder' in group_names"
+
 - name: allow heavy forwarder syslog access
-  ufw: rule=allow port=514 proto=tcp src={{ item }}
+  ufw: rule=allow src={{ item }}
   when: "'heavyforwarder' in group_names"
   with_items: "{{splunk_fw.forwarder_allow}}"
 
