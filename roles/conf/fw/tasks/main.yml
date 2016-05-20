@@ -27,4 +27,4 @@
 
 - name: allow all nodes to talk to each other
   ufw: rule=allow src={{ item }}
-  with_items: "{{splunk_fw.splunk_allow}}"
+  with_items: "{{groups['searchpeer']}}, {{groups['masternode']}}, {{groups['shcluster']}}, {{groups['cluster']}},{{groups['dmc']}},{{groups['heavyforwarder']}}"
