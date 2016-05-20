@@ -12,17 +12,17 @@
 
 - name: allow load balancer snip shcmembers
   ufw: rule=allow port=80 proto=tcp src={{ item }}
-  when: groups['shcmember'] is defined
+  when: "'shcmember' in group_names"
   with_items: "{{splunk_fw.lb_snip}}"
 
 - name: allow access to license manager
   ufw: rule=allow port=8089 proto=tcp src={{ item }}
-  when: groups['licensemaster'] is defined
+  when: "'licensemaster' in group_names"
   with_items: "{{splunk_fw.lm_allow}}"
 
 - name: allow heavy forwarder syslog access
   ufw: rule=allow port=514 proto=tcp src={{ item }}
-  when: groups['heavyforwarder'] is defined
+  when: "'heavyforwarder' in group_names"
   with_items: "{{splunk_fw.forwarder_allow}}"
 
 - name: allow all nodes to talk to each other
