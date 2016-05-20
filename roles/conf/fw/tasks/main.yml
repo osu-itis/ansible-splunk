@@ -1,0 +1,26 @@
+---
+- name: Setup ufw
+  ufw: state=enabled policy=deny
+
+- name: allow ssh
+  ufw: rule=allow port=22 proto=tcp src={{ item }}
+  with_items: "{{splunk_fw.management_allow}}"
+
+- name: allow management http
+  ufw: rule=allow port=8000 proto=tcp src={{ item }}
+  with_items: "{{splunk_fw.management_allow}}"
+
+- name: allow load balancer snip shcmembers
+  ufw: rule=allow port=80 proto=tcp src={{ item }}
+  when: groups['shcmember'] is defined
+  with_items: "{{splunk_fw.lb_snip}}"
+
+- name: allow access to license manager
+  ufw: rule=allow port=8089 proto=tcp src={{ item }}
+  when: groups['licensemaster'] is defined
+  with_items: "{{splunk_fw.lm_allow}}"
+
+- name: allow heavy forwarder syslog access
+  ufw: rule=allow port=514 proto=tcp src={{ item }}
+  when: groups['heavyforwarder'] is defined
+  with_items: "{{splunk_fw.forwarder_allow}}"
