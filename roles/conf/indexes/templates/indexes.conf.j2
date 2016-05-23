@@ -1,0 +1,6 @@
+{% for k,v in indexes.iteritems() %}
+[{{ k }}]
+{% for attr,val in v.iteritems() %}
+{{ attr }} = {{ val }}
+{% endfor %}
+{% endfor %}
