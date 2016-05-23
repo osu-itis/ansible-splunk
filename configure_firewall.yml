@@ -1,0 +1,6 @@
+- name: "Configure ufw on all nodes"
+  hosts: "*:!repository"
+  user: root
+
+  roles:
+    - conf/fw
