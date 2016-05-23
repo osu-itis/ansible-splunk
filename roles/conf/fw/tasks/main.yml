@@ -1,0 +1,38 @@
+---
+- name: Setup ufw
+  ufw: state=enabled policy=deny
+
+- name: allow ssh
+  ufw: rule=allow port=22 proto=tcp src={{ item }}
+  with_items: "{{splunk_fw.management_allow}}"
+
+- name: allow management http
+  ufw: rule=allow port=8000 proto=tcp src={{ item }}
+  with_items: "{{splunk_fw.management_allow}}"
+
+- name: allow load balancer snip shcmembers
+  ufw: rule=allow port=80 proto=tcp src={{ item }}
+  when: "'shcmember' in group_names"
+  with_items: "{{splunk_fw.lb_snip}}"
+
+- name: allow access to license manager
+  ufw: rule=allow port=8089 proto=tcp src={{ item }}
+  when: "'licensemaster' in group_names"
+  with_items: "{{splunk_fw.lm_allow}}"
+
+- name: deny ssh to heavyforwarder all
+  ufw: rule=deny port=22 proto=tcp src=any
+  when: "'heavyforwarder' in group_names"
+
+- name: deny mgmt to heavyforwarder all
+  ufw: rule=deny port=8000 proto=tcp src=any
+  when: "'heavyforwarder' in group_names"
+
+- name: allow heavy forwarder access
+  ufw: rule=allow src={{ item }}
+  when: "'heavyforwarder' in group_names"
+  with_items: "{{splunk_fw.forwarder_allow}}"
+
+- name: allow all nodes to talk to each other
+  ufw: rule=allow src={{ item }}
+  with_items: "{{groups['searchpeer']}}, {{groups['masternode']}}, {{groups['shcluster']}}, {{groups['cluster']}},{{groups['dmc']}},{{groups['heavyforwarder']}}"
