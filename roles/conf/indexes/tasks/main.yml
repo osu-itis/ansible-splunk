@@ -1,8 +1,7 @@
 ---
-
 - name: create indexes.conf on indexer cluster master - _cluster
   template:
-    src=templates/cluster_indexes.conf.j2 
+    src=templates/cluster_indexes.conf.j2
     dest="{{ splunk_installation.splunk_home_path }}/etc/master-apps/_cluster/local/indexes.conf"
     owner=splunk
     group=splunk
