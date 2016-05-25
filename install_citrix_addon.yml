@@ -1,6 +1,6 @@
 - name: Install citrix add-on
   hosts: deployer:masternode
-  remote_user: splunk
+  remote_user: root
 
   roles:
     - roles/apps/citrix_ns_addon
