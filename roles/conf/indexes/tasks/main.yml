@@ -14,7 +14,7 @@
     state=directory
     owner=splunk
     group=splunk
-    mode=0644
+    mode=0755
   when: cluster_system_indexes is defined
 
 - name: create indexes.conf on indexer cluster master - system
