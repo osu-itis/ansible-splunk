@@ -1,0 +1,5 @@
+---
+- name: Push add-on to shcluster
+  command: "{{ splunk_installation.splunk_home_path }}/bin/splunk apply shcluster-bundle --answer-yes -target {{ item }}:8089"
+  with_items: groups['shcmember'][0]
+  when: group_names == 'deployer'

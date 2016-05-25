@@ -1,0 +1,18 @@
+---
+- name: Remove samples from masternode
+  file: path="{{ splunk_installation.splunk_home_path }}/etc/master-apps/Splunk_TA_citrix-netscaler/samples/"
+        recurse=yes
+        state=absent
+
+- name: Remove eventgen.conf from masternode
+  file: path="{{ splunk_installation.splunk_home_path }}/etc/master-apps/Splunk_TA_citrix-netscaler/default/eventgen.conf"
+        state=absent
+
+- name: Remove inputs.conf from masternode
+  file: path="{{ splunk_installation.splunk_home_path }}/etc/master-apps/Splunk_TA_citrix-netscaler/default/inputs.conf"
+        state=absent
+
+- name: Remove database.conf from masternode
+  file: path="{{ splunk_installation.splunk_home_path }}/etc/master-apps/Splunk_TA_citrix-netscaler/default/database.conf"
+        state=absent
+

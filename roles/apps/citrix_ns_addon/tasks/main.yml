@@ -1,0 +1,10 @@
+---
+- include: copy_addon.yml
+- include: cleanup_deployer.yml
+  when: group_names == 'deployer'
+- include: cleanup_masternode.yml
+  when: group_names == 'masternode'
+- include: shcluster_push.yml
+  when: group_names == 'deployer'
+- include: cluster_push.yml
+  when: group_names == 'masternode'

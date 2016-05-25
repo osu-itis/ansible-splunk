@@ -1,0 +1,4 @@
+---
+- name: Push add-on to index cluster
+  command: "{{ splunk_installation.splunk_home_path }}/bin/splunk apply cluster-bundle --answer-yes"
+  when: group_names == 'masternode'
