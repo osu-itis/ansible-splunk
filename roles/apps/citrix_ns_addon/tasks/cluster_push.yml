@@ -3,4 +3,3 @@
   command: "{{ splunk_installation.splunk_home_path }}/bin/splunk apply cluster-bundle --answer-yes"
   become_user: splunk
   become_method: su
-  when: group_names == 'masternode'

@@ -4,4 +4,3 @@
   with_items: groups['shcmember'][0]
   become_user: splunk
   become_method: su
-  when: group_names == 'deployer'
