@@ -5,7 +5,7 @@
           copy=yes
           owner=splunk
           group=splunk
-  when: group_names == 'deployer'
+  when: "'deployer' in group_names"
 
 - name: Copy Splunk Citrix add-on to masternode
   unarchive: src='{{ splunk_repository.repository_root }}/splunk/apps/{{ splunk_apps.citrix_addon_tgz }}'
@@ -13,4 +13,4 @@
           copy=yes
           owner=splunk
           group=splunk
-  when: group_names == 'masternode'
+  when: "'masternode' in group_names"
