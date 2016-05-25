@@ -1,6 +1,6 @@
 ---
 - name: Push add-on to shcluster
-  command: "{{ splunk_installation.splunk_home_path }}/bin/splunk apply shcluster-bundle --answer-yes -target {{ item }}:8089"
+  command: "{{ splunk_installation.splunk_home_path }}/bin/splunk apply shcluster-bundle --answer-yes -target {{ item }}:8089 -auth splunk:{{ splunk_installation.admin_password }}"
   with_items: groups['shcmember'][0]
   become_user: splunk
   become_method: su

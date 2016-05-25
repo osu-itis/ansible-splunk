@@ -1,5 +1,5 @@
 ---
 - name: Push add-on to index cluster
-  command: "{{ splunk_installation.splunk_home_path }}/bin/splunk apply cluster-bundle --answer-yes"
+  command: "{{ splunk_installation.splunk_home_path }}/bin/splunk apply cluster-bundle --answer-yes -auth splunk:{{ splunk_installation.admin_password }}"
   become_user: splunk
   become_method: su
