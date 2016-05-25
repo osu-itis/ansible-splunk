@@ -6,7 +6,7 @@
   when: "'deployer' in group_names"
 
 - name: Copy Splunk Citrix add-on to deployer
-  unarchive: src="{{ splunk_repository.repository_root }}/splunk/apps/{{ splunk_apps.citrix_addon_tgz }}"
+  unarchive: src="{{ splunk_repository.repository_root }}/apps/{{ splunk_apps.citrix_addon_tgz }}"
           dest="{{ splunk_installation.splunk_home_path }}/etc/shcluster/Splunk_TA_citrix-netscaler/"
           copy=yes
           owner=splunk
@@ -20,7 +20,7 @@
   when: "'masternode' in group_names"
 
 - name: Copy Splunk Citrix add-on to masternode
-  unarchive: src="{{ splunk_repository.repository_root }}/splunk/apps/{{ splunk_apps.citrix_addon_tgz }}"
+  unarchive: src="{{ splunk_repository.repository_root }}/apps/{{ splunk_apps.citrix_addon_tgz }}"
           dest="{{ splunk_installation.splunk_home_path }}/etc/master-apps/Splunk_TA_citrix-netscaler/"
           copy=yes
           owner=splunk
