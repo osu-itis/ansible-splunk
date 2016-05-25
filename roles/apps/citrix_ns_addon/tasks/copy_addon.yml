@@ -1,13 +1,13 @@
 ---
 # Deployer
 - name: Create app dir on deployer
-  file: path='{{ splunk_installation.splunk_home_path }}/etc/shcluster/Splunk_TA_citrix-netscaler'
-        state=present
+  file: path="{{ splunk_installation.splunk_home_path }}/etc/shcluster/Splunk_TA_citrix-netscaler"
+        state=directory
   when: "'deployer' in group_names"
 
 - name: Copy Splunk Citrix add-on to deployer
-  unarchive: src='{{ splunk_repository.repository_root }}/splunk/apps/{{ splunk_apps.citrix_addon_tgz }}'
-          dest='{{ splunk_installation.splunk_home_path }}/etc/shcluster/Splunk_TA_citrix-netscaler/'
+  unarchive: src="{{ splunk_repository.repository_root }}/splunk/apps/{{ splunk_apps.citrix_addon_tgz }}"
+          dest="{{ splunk_installation.splunk_home_path }}/etc/shcluster/Splunk_TA_citrix-netscaler/"
           copy=yes
           owner=splunk
           group=splunk
@@ -15,13 +15,13 @@
 
 # Masternode
 - name: Create app dir on masternode
-  file: path="{{ splunk_installation.splunk_home_path }}/etc/master-apps/Splunk_TA_citrix-netscaler/"
-        state=present
+  file: path="{{ splunk_installation.splunk_home_path }}/etc/master-apps/Splunk_TA_citrix-netscaler"
+        state=directory
   when: "'masternode' in group_names"
 
 - name: Copy Splunk Citrix add-on to masternode
-  unarchive: src='{{ splunk_repository.repository_root }}/splunk/apps/{{ splunk_apps.citrix_addon_tgz }}'
-          dest='{{ splunk_installation.splunk_home_path }}/etc/master-apps/Splunk_TA_citrix-netscaler/'
+  unarchive: src="{{ splunk_repository.repository_root }}/splunk/apps/{{ splunk_apps.citrix_addon_tgz }}"
+          dest="{{ splunk_installation.splunk_home_path }}/etc/master-apps/Splunk_TA_citrix-netscaler/"
           copy=yes
           owner=splunk
           group=splunk
