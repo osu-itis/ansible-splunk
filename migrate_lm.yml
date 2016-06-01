@@ -1,0 +1,14 @@
+- name: Configure splunk indexer cluster indexes
+  hosts: "*:!repository"
+  user: splunk
+
+  roles:
+    - migration/lm
+    - migration/symmkey
+
+  post_tasks:
+    - name: Run splunk restart
+      command: "{{ splunk_installation.splunk_home_path }}/bin/splunk restart"
+      become: yes
+      become_user: splunk
+
