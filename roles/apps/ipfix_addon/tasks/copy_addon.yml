@@ -1,0 +1,30 @@
+---
+# Deployer
+- name: Create app dir on deployer
+  file: path="{{ splunk_installation.splunk_home_path }}/etc/shcluster/Splunk_TA_ipfix"
+        state=directory
+  when: "'deployer' in group_names"
+
+- name: Copy Splunk Citrix add-on to deployer
+  unarchive: src="{{ splunk_repository.repository_root }}/apps/{{ splunk_apps.ipfix_addon_tgz }}"
+          dest="{{ splunk_installation.splunk_home_path }}/etc/shcluster/apps"
+          copy=yes
+          owner=splunk
+          group=splunk
+  notify: shcluster bundle push
+  when: "'deployer' in group_names"
+
+
+# Heavy Forwarder
+- name: Create app dir on heavyforwarder
+  file: path="{{ splunk_installation.splunk_home_path }}/etc/apps/Splunk_TA_ipfix"
+        state=directory
+  when: "'heavyforwarder' in group_names"
+
+- name: Copy Splunk Citrix add-on to heavyforwarder
+  unarchive: src="{{ splunk_repository.repository_root }}/apps/{{ splunk_apps.ipfix_addon_tgz }}"
+          dest="{{ splunk_installation.splunk_home_path }}/etc/apps/"
+          copy=yes
+          owner=splunk
+          group=splunk
+  when: "'heavyforwarder' in group_names"
