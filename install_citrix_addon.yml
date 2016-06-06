@@ -4,3 +4,4 @@
 
   roles:
     - roles/apps/citrix_ns_addon
+    - roles/apps/ipfix_addon
