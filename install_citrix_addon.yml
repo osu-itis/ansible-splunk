@@ -1,5 +1,5 @@
 - name: Install citrix add-on
-  hosts: deployer:masternode
+  hosts: deployer:masternode:heavyforwarder
   remote_user: splunk
 
   roles:
