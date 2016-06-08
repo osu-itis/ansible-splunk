@@ -1,0 +1,8 @@
+---
+- name: Remove samples from deployer
+  file: path="{{ splunk_installation.splunk_home_path }}/etc/shcluster/apps/Splunk_TA_citrix-netscaler/samples"
+        state=absent
+
+- name: Remove eventgen.conf from deployer
+  file: path="{{ splunk_installation.splunk_home_path }}/etc/shcluster/apps/Splunk_TA_citrix-netscaler/default/eventgen.conf"
+        state=absent

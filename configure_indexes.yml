@@ -1,5 +1,5 @@
 - name: Configure splunk indexer cluster indexes
-  hosts: masternode
+  hosts: "*:!repository"
   user: splunk
 
   roles:

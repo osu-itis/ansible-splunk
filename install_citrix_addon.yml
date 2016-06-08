@@ -1,0 +1,7 @@
+- name: Install citrix add-on
+  hosts: deployer:masternode:heavyforwarder
+  remote_user: splunk
+
+  roles:
+    - roles/apps/citrix_ns_addon
+    - roles/apps/ipfix_addon

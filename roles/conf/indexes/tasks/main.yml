@@ -1,18 +1,41 @@
 ---
-
 - name: create indexes.conf on indexer cluster master - _cluster
-  template:  src=templates/cluster_indexes.conf.j2 dest=/opt/splunk/etc/master-apps/_cluster/local/indexes.conf owner=splunk group=splunk mode=0644
+  template:
+    src=templates/cluster_indexes.conf.j2
+    dest="{{ splunk_installation.splunk_home_path }}/etc/master-apps/_cluster/local/indexes.conf"
+    owner=splunk
+    group=splunk
+    mode=0644
   when: cluster_indexes is defined
 
+- name: create folder for master-apps/system-local
+  file:
+    path="{{ splunk_installation.splunk_home_path }}/etc/master-apps/system/local"
+    state=directory
+    owner=splunk
+    group=splunk
+    mode=0755
+  when: cluster_system_indexes is defined
+
 - name: create indexes.conf on indexer cluster master - system
-  template:  src=templates/cluster_system_indexes.conf.j2 dest=/opt/splunk/etc/master-apps/system/local/indexes.conf owner=splunk group=splunk mode=0644
+  template:
+    src=templates/cluster_system_indexes.conf.j2
+    dest="{{ splunk_installation.splunk_home_path }}/etc/master-apps/system/local/indexes.conf"
+    owner=splunk
+    group=splunk
+    mode=0644
   when: cluster_system_indexes is defined
 
 - name: create indexes.conf non-clustered host
-  template:  src=templates/indexes.conf.j2 dest=/opt/splunk/etc/system/local/indexes.conf owner=splunk group=splunk mode=0644
+  template:
+    src=templates/indexes.conf.j2
+    dest="{{ splunk_installation.splunk_home_path }}/etc/system/local/indexes.conf"
+    owner=splunk
+    group=splunk
+    mode=0644
   notify: splunk restart
   when: indexes is defined
 
 - name: push bundle to indexer cluster members
-  command: /opt/splunk/bin/splunk apply cluster-bundle --answer-yes -auth admin:{{ splunk_installation.admin_password }}
+  command: "{{ splunk_installation.splunk_home_path }}/bin/splunk apply cluster-bundle --answer-yes -auth admin:{{ splunk_installation.admin_password }}"
   when: cluster_indexes is defined or cluster_system_indexes is defined

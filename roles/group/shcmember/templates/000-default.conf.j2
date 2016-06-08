@@ -1,9 +1,9 @@
 <VirtualHost *:80>
-        ServerName {{ server_name }}
+        ServerName {{ httpd.server_name }}
         DocumentRoot /var/www/html
         CASCookiePath /var/cache/apache2/mod_auth_cas/
-        CASLoginURL {{ cas_login_url }}
-        CASValidateURL {{ cas_validate_url }}
+        CASLoginURL {{ httpd.cas_login_url }}
+        CASValidateURL {{ httpd.cas_validate_url }}
         <Location />
                 Authtype CAS
                 require valid-user
