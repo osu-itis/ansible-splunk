@@ -1,7 +1,7 @@
 ---
 # Deployer
 - name: Create app dir on deployer
-  file: path="{{ splunk_installation.splunk_home_path }}/etc/shcluster/Splunk_TA_nessus"
+  file: path="{{ splunk_installation.splunk_home_path }}/etc/shcluster/apps/Splunk_TA_nessus"
         state=directory
   when: "'deployer' in group_names"
 
