@@ -4,8 +4,3 @@
   args:
     chdir: "{{ splunk_installation.splunk_home_path}}/bin"
   with_items: groups['shcmember'][0]
-
-- name: restart heavy forwarders
-  command: "./splunk restart"
-  args:
-    chdir: "{{ splunk_installation.splunk_home_path}}/bin"

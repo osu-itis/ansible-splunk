@@ -27,5 +27,4 @@
           copy=yes
           owner=splunk
           group=splunk
-  notify: restart heavy forwarders
   when: "'heavyforwarder' in group_names"
