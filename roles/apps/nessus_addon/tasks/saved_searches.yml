@@ -2,7 +2,7 @@
 - name: Move savedsearches.conf
   copy:
     remote_src=true
-    src="{{ splunk_installation.splunk_home_path }}/etc/apps/Splunk_TA_nessus/default/savedsearches.conf"
+    src="{{ splunk_installation.splunk_home_path }}/etc/shcluster/apps/Splunk_TA_nessus/default/savedsearches.conf"
     dest="{{ splunk_installation.splunk_home_path }}/etc/apps/Splunk_TA_nessus/local/"
 
 - name: Nessus Plugins cve
