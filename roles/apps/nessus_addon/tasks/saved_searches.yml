@@ -1,0 +1,76 @@
+---
+- name: Move savedsearches.conf
+  copy:
+    remote_src=true
+    src="{{ splunk_installation.splunk_home_path }}/etc/apps/Splunk_TA_nessus/default/savedsearches.conf"
+    dest="{{ splunk_installation.splunk_home_path }}/etc/apps/Splunk_TA_nessus/local/"
+
+- name: enable Nessus Plugins cve
+  ini_file:
+    dest="{{ splunk_installation.splunk_home_path }}/etc/apps/Splunk_TA_nessus/local/savedsearches.conf"
+    section=Nessus plugins cve
+    option=disabled
+    value=0
+
+- name: enable Nessus Plugins cpe
+  ini_file:
+    dest="{{ splunk_installation.splunk_home_path }}/etc/apps/Splunk_TA_nessus/local/savedsearches.conf"
+    section=Nessus plugins cpe
+    option=disabled
+    value=0
+
+- name: enable Nessus Plugins bugtraq
+  ini_file:
+    dest="{{ splunk_installation.splunk_home_path }}/etc/apps/Splunk_TA_nessus/local/savedsearches.conf"
+    section=Nessus plugins bugtraq
+    option=disabled
+    value=0
+
+- name: enable Nessus Plugins osvdb
+  ini_file:
+    dest="{{ splunk_installation.splunk_home_path }}/etc/apps/Splunk_TA_nessus/local/savedsearches.conf"
+    section=Nessus plugins osvdb
+    option=disabled
+    value=0
+
+- name: enable Nessus Plugins xref
+  ini_file:
+    dest="{{ splunk_installation.splunk_home_path }}/etc/apps/Splunk_TA_nessus/local/savedsearches.conf"
+    section=Nessus plugins xref
+    option=disabled
+    value=0
+
+- name: enable Nessus Plugins msft
+  ini_file:
+    dest="{{ splunk_installation.splunk_home_path }}/etc/apps/Splunk_TA_nessus/local/savedsearches.conf"
+    section=Nessus plugins msft
+    option=disabled
+    value=0
+
+- name: enable Nessus Plugins mskb
+  ini_file:
+    dest="{{ splunk_installation.splunk_home_path }}/etc/apps/Splunk_TA_nessus/local/savedsearches.conf"
+    section=Nessus plugins mskb
+    option=disabled
+    value=0
+
+- name: enable Nessus Plugins cert
+  ini_file:
+    dest="{{ splunk_installation.splunk_home_path }}/etc/apps/Splunk_TA_nessus/local/savedsearches.conf"
+    section=Nessus plugins cert
+    option=disabled
+    value=0
+
+- name: enable Nessus Plugins see_also
+  ini_file:
+    dest="{{ splunk_installation.splunk_home_path }}/etc/apps/Splunk_TA_nessus/local/savedsearches.conf"
+    section=Nessus plugins see_also
+    option=disabled
+    value=0
+
+- name: enable Nessus Plugins
+  ini_file:
+    dest="{{ splunk_installation.splunk_home_path }}/etc/apps/Splunk_TA_nessus/local/savedsearches.conf"
+    section=Nessus plugins
+    option=disabled
+    value=0
