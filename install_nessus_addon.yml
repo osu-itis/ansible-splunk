@@ -1,0 +1,7 @@
+---
+- name: Install Nessus add-on
+  hosts: deployer:heavyforwarder
+  remote_user: splunk
+
+  roles:
+    - roles/apps/nessus_addon

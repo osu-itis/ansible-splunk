@@ -1,0 +1,9 @@
+---
+- include: copy_addon.yml
+
+- include: cleanup_deployer.yml
+  when: "'deployer' in group_names"
+
+- include: saved_searches.yml
+  when: "'deployer' in group_names"
+  notify: shcluster bundle push
