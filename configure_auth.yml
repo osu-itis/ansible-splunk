@@ -1,0 +1,10 @@
+- name: Install splunk shcmember
+  hosts: shcmember
+  user: splunk
+
+  roles:
+    - conf/authentication
+
+  post_tasks:
+    - name: Run splunk restart
+      command: "{{ splunk_installation.splunk_home_path }}/bin/splunk restart"
