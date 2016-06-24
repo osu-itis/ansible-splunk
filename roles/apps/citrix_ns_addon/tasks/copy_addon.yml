@@ -26,3 +26,17 @@
           owner=splunk
           group=splunk
   when: "'masternode' in group_names"
+
+# Heavyforwarder
+- name: Create app dir on heavyforwarder
+  file: path="{{ splunk_installation.splunk_home_path }}/etc/Splunk_TA_citrix-netscaler"
+        state=directory
+  when: "'heavyforwarder' in group_names"
+
+- name: Copy Splunk Citrix add-on to heavyforwarder
+  unarchive: src="{{ splunk_repository.repository_root }}/apps/{{ splunk_apps.citrix_addon_tgz }}"
+          dest="{{ splunk_installation.splunk_home_path }}/etc/apps/"
+          copy=yes
+          owner=splunk
+          group=splunk
+  when: "'heavyforwarder' in group_names"
