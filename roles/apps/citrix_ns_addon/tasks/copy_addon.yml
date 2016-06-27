@@ -34,7 +34,7 @@
 # Heavyforwarder
 - name: Create app dir on heavyforwarder
   file:
-    path="{{ splunk_installation.splunk_home_path }}/etc/Splunk_TA_citrix-netscaler"
+    path="{{ splunk_installation.splunk_home_path }}/etc/apps/Splunk_TA_citrix-netscaler"
     state=directory
   when: "'heavyforwarder' in group_names"
 
