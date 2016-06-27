@@ -1,0 +1,27 @@
+---
+#####################################################################################################################
+# Configurations for Splunk server.conf
+#####################################################################################################################
+
+#####################################################################################################################
+# [shclustering]
+#####################################################################################################################
+
+# conf_replication_include
+
+- name: "Configure server.conf [shclustering] - conf_replication_include state=present"
+  ini_file: dest={{ splunk_conf_path }}/server.conf
+            section=shclustering
+            option=conf_replication_include.history
+            value={{ splunk_server_conf.shclustering.conf_replication_include.history }}
+            state=present
+  when: splunk_server_conf.shclustering.conf_replication_include.history is defined
+  notify: splunk restart
+
+- name: "Configure server.conf [shclustering] - conf_replication_include state=absent (default)"
+  ini_file: dest={{ splunk_conf_path }}/server.conf
+            section=shclustering
+            option=conf_replication_include.history
+            state=absent
+  when: splunk_server_conf.shclustering.conf_replication_include.history is undefined
+  notify: splunk restart
