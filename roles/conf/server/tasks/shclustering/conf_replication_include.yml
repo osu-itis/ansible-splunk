@@ -12,7 +12,7 @@
 - name: "Configure server.conf [shclustering] - replication_factor state=present"
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=shclustering
-            option=conf_replication_include.history = true
+            option=conf_replication_include.history
             value={{ splunk_server_conf.shclustering.conf_replication_include.history }}
             state=present
   when: splunk_server_conf.shclustering.conf_replication_include.history is defined
@@ -21,7 +21,7 @@
 - name: "Configure server.conf [shclustering] - replication_factor state=absent (default)"
   ini_file: dest={{ splunk_conf_path }}/server.conf
             section=shclustering
-            option=conf_replication_include.history = true
+            option=conf_replication_include.history
             state=absent
   when: splunk_server_conf.shclustering.conf_replication_include.history is undefined
   notify: splunk restart
