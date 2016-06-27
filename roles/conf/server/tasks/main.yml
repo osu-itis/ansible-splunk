@@ -20,6 +20,7 @@
 - include: replication_port-ssl/serverCert.yml
 - include: replication_port-ssl/password.yml
 - include: shclustering/conf_deploy_fetch_url.yml
+- include: shclustering/conf_replication_include.yml
 - include: shclustering/enable.yml
 - include: shclustering/election.yml
 - include: shclustering/id.yml
