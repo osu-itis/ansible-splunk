@@ -7,3 +7,4 @@
     - conf/outputs
     - conf/server
     - conf/indexes
+    - conf/alert_actions
