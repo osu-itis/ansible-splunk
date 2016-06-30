@@ -5,6 +5,7 @@
 - include: install_apt_pkgs.yml
   when: ansible_pkg_mgr == 'apt'
 
+- include: copy_ssl.yml
 - include: conf_httpd.yml
 - include: restart_shcmember.yml
 - include: init.yml
