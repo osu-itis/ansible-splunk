@@ -1,2 +1,6 @@
 ---
 - include: copy_enterprise_license_keys.yml
+  when: osu_environment == "prod"
+
+- include: touch.yml
+- include: distsearch.yml

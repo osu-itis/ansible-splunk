@@ -1,0 +1,17 @@
+---
+- name: "Configure distsearch.conf [distributedSearch] state=present"
+  ini_file: dest={{ splunk_conf_path }}/distsearch.conf
+            section="distributedSearch"
+            option=servers
+            value="{{ groups['masternode'] | create_distsearch_servers }}"
+            state=present
+  when: groups['masternode'] is defined
+  notify: splunk restart
+
+- name: "Configure distsearch.conf [distributedSearch] state=absent (default)"
+  ini_file: dest={{ splunk_conf_path }}/distsearch.conf
+            section="distributedSearch"
+            option=servers
+            state=absent
+  when: groups['masternode'] is undefined
+  notify: splunk restart
