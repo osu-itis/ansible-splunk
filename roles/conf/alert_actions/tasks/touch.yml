@@ -1,12 +1,12 @@
 ---
 #####################################################################################################################
-# Configurations for Splunk authentication.conf
+# Configurations for Splunk alert_actions.conf
 #####################################################################################################################
 
 # touch
 
-- name: "Touch authentication.conf"
-  file: path={{ splunk_conf_path }}/authentication.conf
+- name: "Touch alert_actions.conf"
+  file: path={{ splunk_conf_path }}/alert_actions.conf
         owner=splunk
         group=splunk
         mode=600

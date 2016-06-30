@@ -1,0 +1,19 @@
+---
+
+- name: "Configure alert_actions.conf [default] hostname state=present"
+  ini_file: dest={{ splunk_conf_path }}/alert_actions.conf
+            section=default
+            option=hostname
+            value={{ splunk_alert_actions.default.hostname }}
+            state=present
+  when: splunk_alert_actions.default.hostname is defined
+  notify: splunk restart
+
+- name: "Configure alert_actions.conf [default] hostname state=absent (default)"
+  ini_file: dest={{ splunk_conf_path }}/alert_actions.conf
+            section=default
+            option=hostname
+            state=absent
+  when: splunk_alert_actions.default.hostname is undefined
+  notify: splunk restart
+
