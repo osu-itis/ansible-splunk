@@ -1,5 +1,8 @@
 ---
 
+- name: enable ssl module
+  command: "a2enmod ssl"
+
 - name: Copy Splunk SSL cert
   copy: src="{{ splunk_repository.repository_root }}/certs/{{ splunk_installation.ssl_cert }}"
         dest="/etc/ssl/certs/splunk-cert.crt"
