@@ -1,4 +1,4 @@
-<VirtualHost *:80>
+<VirtualHost *:443>
         ServerName {{ httpd.server_name }}
         DocumentRoot /var/www/html
         CASCookiePath /var/cache/apache2/mod_auth_cas/
@@ -22,5 +22,11 @@
 
         ErrorLog ${APACHE_LOG_DIR}/error.log
         CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+        SSLEngine on
+        SSLCertificateFile      /etc/ssl/certs/splunk-cert.crt
+        SSLCertificateKeyFile   /etc/ssl/certs/splunk-cert.key
+        SSLCACertificatePath    /etc/ssl/certs
+        SSLCACertificateFile    /etc/ssl/certs/splunk-ca-cert.crt
 
 </VirtualHost>
