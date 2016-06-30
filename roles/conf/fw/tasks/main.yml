@@ -11,7 +11,7 @@
   with_items: "{{splunk_fw.management_allow}}"
 
 - name: allow load balancer snip shcmembers
-  ufw: rule=allow port=80 proto=tcp src={{ item }}
+  ufw: rule=allow port=443 proto=tcp src={{ item }}
   when: "'shcmember' in group_names"
   with_items: "{{splunk_fw.lb_snip}}"
 
