@@ -8,3 +8,5 @@
   run_once: true
   become: yes
   become_user: splunk
+  tags:
+    - bootstrap
