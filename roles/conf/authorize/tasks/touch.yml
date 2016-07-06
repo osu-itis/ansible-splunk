@@ -1,0 +1,14 @@
+---
+#####################################################################################################################
+# Configurations for Splunk authorize.conf
+#####################################################################################################################
+
+# touch
+
+- name: "Touch authorize.conf"
+  file: path={{ splunk_conf_path }}/authorize.conf
+        owner=splunk
+        group=splunk
+        mode=600
+        state=touch
+  changed_when: false

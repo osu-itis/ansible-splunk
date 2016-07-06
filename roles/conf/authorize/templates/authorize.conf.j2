@@ -1,0 +1,6 @@
+{% for k,v in roles.iteritems() %}
+[role_{{ k }}]
+{% for attr,val in v.iteritems() %}
+{{ attr }} = {{ val }}
+{% endfor %}
+{% endfor %}

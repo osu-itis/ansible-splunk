@@ -4,6 +4,7 @@
 
   roles:
     - conf/authentication
+    - conf/authorize
 
   post_tasks:
     - name: Run splunk restart
