@@ -6,6 +6,5 @@
     owner=splunk
     group=splunk
     mode=0644
-  notify: splunk restart
   when: user_roles is defined
 

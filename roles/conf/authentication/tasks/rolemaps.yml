@@ -10,7 +10,6 @@
             state=present
   with_items: "{{ splunk_auth_conf.rolemaps }}"
   when: splunk_auth_conf.strategies.{{ item.strategy }} is defined
-  notify: splunk restart
 
 - name: "Configure authentication.conf [roleMap_<strategy>] - state=absent (default)"
   ini_file: dest={{ splunk_conf_path }}/authentication.conf
@@ -19,5 +18,4 @@
             state=absent
   with_items: "{{ splunk_auth_conf.rolemaps }}"
   when: splunk_auth_conf.strategies.{{ item.strategy }} is undefined
-  notify: splunk restart
 
