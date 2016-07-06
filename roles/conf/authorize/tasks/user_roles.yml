@@ -7,5 +7,5 @@
     group=splunk
     mode=0644
   notify: splunk restart
-  when: roles is defined
+  when: user_roles is defined
 

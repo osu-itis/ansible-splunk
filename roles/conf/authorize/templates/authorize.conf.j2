@@ -1,4 +1,4 @@
-{% for k,v in roles.iteritems() %}
+{% for k,v in user_roles.iteritems() %}
 [role_{{ k }}]
 {% for attr,val in v.iteritems() %}
 {{ attr }} = {{ val }}
