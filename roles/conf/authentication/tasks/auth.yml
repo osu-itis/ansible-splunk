@@ -8,7 +8,6 @@
             value={{ splunk_auth_conf.auth.authSettings }}
             state=present
   when: splunk_auth_conf.auth.authSettings is defined
-  notify: splunk restart
 
 - name: "Configure authentication.conf [auth] authSettings state=absent (default)"
   ini_file: dest={{ splunk_conf_path }}/authentication.conf
@@ -16,7 +15,6 @@
             option=authSettings
             state=absent
   when: splunk_auth_conf.auth.authSettings is undefined
-  notify: splunk restart
 
 - name: "Configure authentication.conf [auth] authType state=present"
   ini_file: dest={{ splunk_conf_path }}/authentication.conf
@@ -25,7 +23,6 @@
             value={{ splunk_auth_conf.auth.authType }}
             state=present
   when: splunk_auth_conf.auth.authType is defined
-  notify: splunk restart
 
 - name: "Configure authentication.conf [auth] authType state=absent (default)"
   ini_file: dest={{ splunk_conf_path }}/authentication.conf
@@ -33,4 +30,3 @@
             option=authType
             state=absent
   when: splunk_auth_conf.auth.authType is undefined
-  notify: splunk restart
