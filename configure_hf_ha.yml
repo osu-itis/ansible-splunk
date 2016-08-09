@@ -1,0 +1,6 @@
+- name: Configure splunk heavyforwarder with keepalived
+  hosts: heavyforwarder
+  user: splunk
+
+  roles:
+    - conf/ha
