@@ -1,0 +1,20 @@
+# special configs that are annoying to template and Splunk is just going to ruin them anyway.
+---
+
+- name: Copy custom props.conf
+  copy: src="{{splunk_repository.repository_root}}/conf/heavyforwarder/props.conf"
+        dest="/opt/splunk/etc/system/local/props.conf"
+        mode=0600
+  when: splunk_overrides.props_conf == True
+
+- name: Copy custom transforms.conf
+  copy: src="{{splunk_repository.repository_root}}/conf/heavyforwarder/transforms.conf"
+        dest="/opt/splunk/etc/system/local/props.conf"
+        mode=0600
+  when: splunk_overrides.transforms_conf == True
+
+- name: Copy custom inputs.conf
+  copy: src="{{splunk_repository.repository_root}}/conf/heavyforwarder/inputs.conf"
+        dest="/opt/splunk/etc/system/local/props.conf"
+        mode=0600
+  when: splunk_overrides.inputs_conf == True
