@@ -18,6 +18,7 @@
   with_dict: "{{ splunk_outputs_conf.indexer_discovery }}"
   when: splunk_outputs_conf.indexer_discovery.{{ item.key }}.pass4SymmKey is defined
   notify: splunk restart
+  tags: pass4SymmKey
 
 - name: "Configure outputs.conf [indexer_discovery] - pass4SymmKey state=absent (default)"
   ini_file: dest={{ splunk_conf_path }}/outputs.conf
@@ -27,3 +28,4 @@
   with_dict: "{{ splunk_outputs_conf.indexer_discovery }}"
   when: splunk_outputs_conf.indexer_discovery.{{ item.key }}.pass4SymmKey is undefined
   notify: splunk restart
+  tags: pass4SymmKey
