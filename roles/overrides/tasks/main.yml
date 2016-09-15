@@ -7,6 +7,6 @@
             owner=splunk
             group=splunk
             mode=0600
-  with_items: "{{ splunk_override_conf.files }}"
+  with_items: "{{ splunk_overrides_conf.files }}"
   when: splunk_overrides_conf is defined
 
