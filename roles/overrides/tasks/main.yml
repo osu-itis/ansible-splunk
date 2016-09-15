@@ -8,5 +8,5 @@
             group=splunk
             mode=0600
   with_items: "{{ splunk_override_conf.files }}"
-  when: splunk_overrides_conf.{{ item.data }} is defined
+  when: splunk_overrides_conf is defined
 

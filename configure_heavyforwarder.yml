@@ -6,4 +6,4 @@
     - conf/outputs
     - conf/server
     - conf/indexes
-    - conf/overrides
+    - overrides
