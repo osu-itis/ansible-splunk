@@ -3,8 +3,7 @@
   user: splunk
 
   roles:
-    - conf/web
-    - conf/inputs
     - conf/outputs
     - conf/server
     - conf/indexes
+    - overrides
