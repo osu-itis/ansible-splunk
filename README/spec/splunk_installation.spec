@@ -5,7 +5,7 @@
 ########################################################
 
 splunk_installation:
-  splunk_home_path: 
+  splunk_home_path:
   * Mandatory
   * Typically /opt/splunk
 
@@ -21,7 +21,7 @@ splunk_installation:
   * Mandatory
   * The package format used to install Splunk
 
-  package_file: <filename> 
+  package_file: <filename>
   * Mandatory
   * The file name of the Splunk package. Files has to exist in <splunk_repository>/packages
 
@@ -38,21 +38,14 @@ splunk_installation:
   * Mandatory
   * The path where Ansible copies the apps to
   * Typically /tmp
- 
+
   admin_password: <string>
   * Mandatory
   * The Splunk admin password in cleartext
   * Use Ansible Vault to keep this protected
 
   splunk_secret: <string>
-  * Mandatory
+  * Optional
   * The splunk.secret in cleartext
   * Use Ansible Vault to keep this protected
-  
-  firewalld_open_port:
-    port: "<portnumber1>/tcp"
-    port: "<portnumber2>/tcp"
-    ... 
-    port: "<portnumberN>/tcp"
-  * Optional
-  * List of ports to open, if firewalld is used.
+

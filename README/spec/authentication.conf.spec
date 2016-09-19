@@ -1,4 +1,7 @@
 # authentication.conf spec
+#
+# Can list multiple strategies and role mappings.
+#
 
 splunk_auth_conf:
   strategies:
@@ -14,7 +17,7 @@ splunk_auth_conf:
       groupMemberAttribute: member
       groupNameAttribute: cn
       host: ldap.domain.tld
-      nestedGroups: 0
+      nestedGroups: 1
       network_timeout: 20
       port: 636
       realNameAttribute: displayname

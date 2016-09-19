@@ -8,8 +8,6 @@
 
 # Instructions
 
-* See https://github.com/my2ndhead/ansible_playbook_splunk/wiki
-
 * clone group_vars from private repository
 
 

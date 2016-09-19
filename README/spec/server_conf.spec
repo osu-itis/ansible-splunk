@@ -1,7 +1,7 @@
 ############################################
 #
 # Possible values for conf/server role
-# 
+#
 # Follows Splunk server.conf.spec closely
 #
 ############################################
@@ -9,7 +9,7 @@
 splunk_server_conf:
   general:
     pass4SymmKey: <password>
-    * Encrypted password
+    * Plaintext or Encrypted - plaintext will be encrypted when splunk restarted
 
     site: [dynamic|<site>]
     * The site where the system is located. Dynamic will use site attribute from inventory
@@ -24,7 +24,7 @@ splunk_server_conf:
 
   sslConfig:
     sslKeysfilePassword: <password>
-    * Encrypted password 
+    * Plaintext or Encrypted - plaintext will be encrypted when splunk restarted
 
   license:
     master_uri: [dynamic|<uri>]
@@ -36,10 +36,10 @@ splunk_server_conf:
 
     master_uri: [<uri> | clustermaster:stanzaName1, clustermaster:stanzaName2]
     * URI of the cluster master that this slave or searchhead should connect to.
-    
+
     pass4SymmKey: <password>
-    * Encrypted password
- 
+    * Plaintext or Encrypted - plaintext will be encrypted when splunk restarted
+
     multisite: [true|false]
     * Defaults to false
 
@@ -76,17 +76,17 @@ splunk_server_conf:
 
     password: <string>
     * Encrypted password
-  
+
   shclustering:
     mgmt_uri: [mgmt-URI | dynamic]
     * The management uri is used to identify the cluster members own address to
       itself.
     * Use dynamic to set own adress automatically
-   
+
     id: <GUID>
     * Unique identifier for this cluster as a whole, shared across all cluster
     members.
-    * Create one, e.g. using python: $ python -c "import uuid; print str(uuid.uuid4()).upper()" 
+    * Create one, e.g. using python: $ python -c "import uuid; print str(uuid.uuid4()).upper()"
 
     conf_deploy_fetch_url: [ <URL> | dynamic ]
     * Specifies the location of the deployer from which members fetch the
@@ -97,7 +97,7 @@ splunk_server_conf:
     * Defaults to empty.
 
     election: [True | False]
-    * This is used to classify a cluster as static or dynamic (RAFT based). 
+    * This is used to classify a cluster as static or dynamic (RAFT based).
     * election = false means static captain, which is used for DR situation.
     * election = true means dynamic captain election enabled through RAFT protocol
 
