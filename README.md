@@ -8,8 +8,11 @@
 
 # Instructions
 
-* clone group_vars from private repository
-
+* Clone group_vars from private repository.
+* Create a hosts file from one of the provided templates.
+* Always run install_splunk.yml playbook first.  download_splunk.yml is unnecessary if package downloaded already.
+* Run remaining configure/install playbooks as needed.  Might want to do configure_firewall first.
+* Make sure splunkd has been (re)started after configuring nodes.
 
 ## License
 - **This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.** [1]
