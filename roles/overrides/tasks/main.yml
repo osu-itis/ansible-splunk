@@ -1,0 +1,12 @@
+# special configs that are annoying to template and Splunk is just going to ruin them anyway.
+---
+
+- name: "Configure conf file override [<filepath>] - state=present"
+  template: src=templates/overrides.conf.j2
+            dest={{ item.filepath }}
+            owner=splunk
+            group=splunk
+            mode=0600
+  with_items: splunk_overrides_conf.files
+  when: splunk_overrides_conf is defined
+

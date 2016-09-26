@@ -67,6 +67,7 @@
             state=present
   with_dict: "{{ splunk_auth_conf.strategies }}"
   when: splunk_auth_conf.strategies.{{ item.key }}.bindDNpassword is defined
+  tags: bindDNpassword
   notify: splunk restart
 
 - name: "Configure authentication.conf [strategy] bindDNpassword state=absent (default)"
@@ -76,6 +77,7 @@
             state=absent
   with_dict: "{{ splunk_auth_conf.strategies }}"
   when: splunk_auth_conf.strategies.{{ item.key }}.bindDNpassword is undefined
+  tags: bindDNpassword
   notify: splunk restart
 
 - name: "Configure authentication.conf [strategy] charset state=present"
