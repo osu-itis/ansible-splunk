@@ -13,7 +13,12 @@
 * clone group_vars from private repository
 
 
+# Heavy Forwarder with keepalived
+
+* The configure_hf_ha.yml playbook should be used with configure_heavyforwarder.yml to keep HF configurations in sync.  Playbook does NOT keep app-specific configs in sync, so additional playbooks may need to be applied in order to keep matched heavy forwarders in a failover pair!
+
 ## License
+- ** The keepalived role is from https://github.com/tcomerma/ansible-keepalived and it is licensed under the Apache license - see LICENSE-keepalived.md for details.
 - **This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.** [1]
 - **Commercial Use, Excerpt from CC BY-NC-SA 4.0:**
   - "A commercial use is one primarily intended for commercial advantage or monetary compensation."
