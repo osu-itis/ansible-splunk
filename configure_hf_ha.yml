@@ -1,6 +1,14 @@
-- name: Configure splunk heavyforwarder with keepalived
-  hosts: heavyforwarder
-  user: splunk
+---
+- name: Configure splunk heavyforwarder with keepalived - master
+  hosts: hf_master
+  user: root
+
+  roles:
+    - conf/ha
+
+- name: Configure splunk heavyforwarder with keepalived - slave
+  hosts: hf_slave
+  user: root
 
   roles:
     - conf/ha
