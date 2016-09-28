@@ -1,0 +1,7 @@
+---
+- name: Install Cisco-asa app add-on
+  hosts: deployer:heavyforwarder
+  remote_user: splunk
+
+  roles:
+    - roles/apps/cisco_asa_app
