@@ -1,5 +1,6 @@
 ---
 - include: touch.yml
+- include: cert.yml
 - include: settings/rproxy.yml
 - include: settings/serverCert.yml
 - include: settings/enableSplunkWebSSL.yml

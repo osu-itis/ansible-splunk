@@ -21,7 +21,7 @@ splunk_web_conf:
     * Relative paths are interpreted as relative to $SPLUNK_HOME
     * Defaults to etc/auth/splunkweb/privkey.pem
 
-    caCertPath:  <path>
+    serverCert:  <path>
     * Relative paths are interpreted as relative to $SPLUNK_HOME
     * Default to etc/auth/splunkweb/cert.pem
 
