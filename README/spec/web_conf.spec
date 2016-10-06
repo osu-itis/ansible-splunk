@@ -27,3 +27,9 @@ splunk_web_conf:
 
     updateCheckerBaseURL: [http://quickdraw.Splunk.com/js/|0]
     * Defaults to http://quickdraw.Splunk.com/js/
+
+    certFile: <filename>
+    * in <repository>/ssl/<filename>
+
+    certKey: <filename>
+    * see certFile
