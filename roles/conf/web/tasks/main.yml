@@ -1,7 +1,7 @@
 ---
 - include: touch.yml
 - include: settings/rproxy.yml
-- include: settings/caCertPath.yml
+- include: settings/serverCert.yml
 - include: settings/enableSplunkWebSSL.yml
 - include: settings/httpport.yml
 - include: settings/privKeyPath.yml
