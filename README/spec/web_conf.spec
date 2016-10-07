@@ -21,9 +21,15 @@ splunk_web_conf:
     * Relative paths are interpreted as relative to $SPLUNK_HOME
     * Defaults to etc/auth/splunkweb/privkey.pem
 
-    caCertPath:  <path>
+    serverCert:  <path>
     * Relative paths are interpreted as relative to $SPLUNK_HOME
     * Default to etc/auth/splunkweb/cert.pem
 
     updateCheckerBaseURL: [http://quickdraw.Splunk.com/js/|0]
     * Defaults to http://quickdraw.Splunk.com/js/
+
+    certFile: <filename>
+    * in <repository>/ssl/<filename>
+
+    certKey: <filename>
+    * see certFile
