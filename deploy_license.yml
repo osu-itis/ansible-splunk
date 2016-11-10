@@ -1,0 +1,5 @@
+- name: Deploy license to License Master
+  hosts: licensemaster
+  user: root
+
+- include: roles/group/licensemaster/tasks/copy_enterprise_license_keys.yml
