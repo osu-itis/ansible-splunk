@@ -1,47 +1,15 @@
 ---
-- hosts: all
-  become_user: splunk
-  become_method: su
+- hosts: "*:!repository"
+  user: root
 
-  tasks:
+  pre_tasks:
     - name: Stop all nodes
       command: "{{ splunk_installation.splunk_home_path }}/bin/splunk stop"
-
-- hosts: masternode
-  remote_user: root
-
-  roles:
-    - upgrade
-
-- hosts: masternode
-  become_user: splunk
-  become_method: su
-
-  tasks:
-    - name: Start Masternode
-      command: "{{ splunk_installation.splunk_home_path }}/bin/splunk start --accept-license --answer-yes"
-
-    - name: Enable maintenance mode
-      command: "{{ splunk_installation.splunk_home_path }}/bin/splunk enable maintenance-mode"
-
-- hosts: "*:!repository:!masternode"
-  remote_user: root
+      become_user: splunk
+      become_method: su
 
   roles:
-    - upgrade
-
-- hosts: "*:!repository:!masternode"
-  become_user: splunk
-  become_method: su
-
-  tasks:
-    - name: Start splunk on all peer nodes
-      command: "{{ splunk_installation.splunk_home_path }}/bin/splunk start --accept-license --answer-yes"
-
-- hosts: masternode
-  become_user: splunk
-  become_method: su
-
-  tasks:
-    - name: Disable maintenance mode
-      command: "{{ splunk_installation.splunk_home_path }}/bin/splunk disable maintenance-mode"
+    - upgrade-master
+      when: "'masternode' in group_names"
+    - upgrade-peers
+      when: "'masternode' not in group_names"
