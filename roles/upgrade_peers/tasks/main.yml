@@ -23,6 +23,6 @@
   when: splunk_installation.package_format == "tgz"
 
 - name: Start splunk
-  command: "{{ splunk_installation.splunk_home_path }}/splunk/bin start --accept-license --answer-yes"
+  command: "{{ splunk_installation.splunk_home_path }}/bin/splunk start --accept-license --answer-yes"
   become_user: splunk
   become_method: su
