@@ -5,6 +5,7 @@
   pre_tasks:
     - name: Stop all nodes
       command: "{{ splunk_installation.splunk_home_path }}/bin/splunk stop"
+      become: true
       become_user: splunk
       become_method: su
 
@@ -14,7 +15,7 @@
 
   post_tasks:
     - name: Disable maintenance mode
-      command: "{{ splunk_installation.splunk_home_path }}/bin/splunk disable maintenance-mode"
+      command: "{{ splunk_installation.splunk_home_path }}/bin/splunk disable maintenance-mode -auth admin:{{ splunk_installation.admin_password }}"
       become: true
       become_user: splunk
       become_method: su
