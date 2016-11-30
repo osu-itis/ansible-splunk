@@ -9,8 +9,8 @@
       become_method: su
 
   roles:
-    - { role: upgrade-master, when: "'masternode' in group_names" }
-    - { role: upgrade-peers, when: "'masternode' not in group_names" }
+    - { role: upgrade_master, when: "'masternode' in group_names" }
+    - { role: upgrade_peers, when: "'masternode' not in group_names" }
 
   post_tasks:
     - name: Disable maintenance mode
