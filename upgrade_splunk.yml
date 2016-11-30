@@ -9,7 +9,12 @@
       become_method: su
 
   roles:
-    - upgrade-master
+    - { role: upgrade-master, when: "'masternode' in group_names" }
+    - { role: upgrade-peers, when: "'masternode' not in group_names" }
+
+  post_tasks:
+    - name: Disable maintenance mode
+      command: "{{ splunk_installation.splunk_home_path }}/bin/splunk disable maintenance-mode"
+      become_user: splunk
+      become_method: su
       when: "'masternode' in group_names"
-    - upgrade-peers
-      when: "'masternode' not in group_names"
