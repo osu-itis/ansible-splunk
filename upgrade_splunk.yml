@@ -1,5 +1,5 @@
 ---
-- hosts: "*:!repository:!deployer"
+- hosts: "*:!repository"
   user: root
 
   pre_tasks:
@@ -8,6 +8,7 @@
       become: true
       become_user: splunk
       become_method: su
+      when: "'deployer' not in group_names"
 
   roles:
     - { role: upgrade_master, when: "'masternode' in group_names" }
