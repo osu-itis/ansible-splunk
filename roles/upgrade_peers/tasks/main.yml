@@ -4,6 +4,12 @@
         dest="{{ splunk_installation.remote_package_temp_path }}/{{ splunk_installation.package_file }}"
         mode=600
 
+- name: Ensure Splunk is stopped
+  command: "{{ splunk_installation.splunk_home_path }}/bin/splunk stop"
+  become: true
+  become_user: splunk
+  become_method: su
+
 - name: Install Splunk package from tgz
   unarchive: src="{{ splunk_installation.remote_package_temp_path }}/{{ splunk_installation.package_file }}"
              dest=/opt
@@ -21,9 +27,3 @@
         group=splunk
         recurse=yes
   when: splunk_installation.package_format == "tgz"
-
-- name: Start splunk
-  command: "{{ splunk_installation.splunk_home_path }}/bin/splunk start --accept-license --answer-yes"
-  become: true
-  become_user: splunk
-  become_method: su

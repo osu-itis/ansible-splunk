@@ -1,5 +1,5 @@
 ---
-- hosts: "*:!repository"
+- hosts: "*:!repository:!deployer"
   user: root
 
   pre_tasks:
@@ -11,9 +11,24 @@
 
   roles:
     - { role: upgrade_master, when: "'masternode' in group_names" }
-    - { role: upgrade_peers, when: "'masternode' not in group_names" }
+    - { role: upgrade_peers, when: "'masternode' not in group_names or 'deployer' not in group_names" }
+    - { role: upgrade_peers, when: "'deployer' in group_names" }
 
   post_tasks:
+    - name: Start deployer
+      command: "{{ splunk_installation.splunk_home_path }}/bin/splunk start --accept-license --answer-yes"
+      become: true
+      become_user: splunk
+      become_method: su
+      when: "'deployer' in group_names"
+
+    - name: Start peers
+      command: "{{ splunk_installation.splunk_home_path }}/bin/splunk start --accept-license --answer-yes"
+      become: true
+      become_user: splunk
+      become_method: su
+      when: "'deployer' not in group_names or 'masternode' not in group_names"
+
     - name: Disable maintenance mode
       command: "{{ splunk_installation.splunk_home_path }}/bin/splunk disable maintenance-mode -auth admin:{{ splunk_installation.admin_password }}"
       become: true
