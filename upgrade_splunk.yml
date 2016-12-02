@@ -23,7 +23,7 @@
       become_method: su
       when: "'deployer' in group_names"
 
-    - name: Start peers
+    - name: Start remaining nodes
       command: "{{ splunk_installation.splunk_home_path }}/bin/splunk start --accept-license --answer-yes"
       become: true
       become_user: splunk
