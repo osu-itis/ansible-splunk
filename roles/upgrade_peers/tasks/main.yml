@@ -1,14 +1,14 @@
 ---
-
 - name: Copy Splunk package
   copy: src="{{ splunk_repository.repository_root }}/packages/{{ splunk_installation.package_file }}"
-        dest="/{{ splunk_installation.remote_package_temp_path }}/{{ splunk_installation.package_file }}"
+        dest="{{ splunk_installation.remote_package_temp_path }}/{{ splunk_installation.package_file }}"
         mode=600
 
-- name: Install Splunk package from rpm
-  yum: name="{{ splunk_installation.remote_package_temp_path }}/{{ splunk_installation.package_file }}"
-       state=present
-  when: splunk_installation.package_format == "rpm"
+- name: Ensure Splunk is stopped
+  command: "{{ splunk_installation.splunk_home_path }}/bin/splunk stop"
+  become: true
+  become_user: splunk
+  become_method: su
 
 - name: Install Splunk package from tgz
   unarchive: src="{{ splunk_installation.remote_package_temp_path }}/{{ splunk_installation.package_file }}"
@@ -27,13 +27,3 @@
         group=splunk
         recurse=yes
   when: splunk_installation.package_format == "tgz"
-
-- name: splunk stop
-  shell: "{{ splunk_installation.splunk_home_path }}/bin/splunk stop"
-  become: yes
-  become_user: splunk
-
-- name: splunk start
-  shell: "{{ splunk_installation.splunk_home_path }}/bin/splunk start --accept-license --answer-yes"
-  become: yes
-  become_user: splunk

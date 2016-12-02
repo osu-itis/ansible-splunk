@@ -1,0 +1,35 @@
+---
+- name: Copy Splunk package
+  copy: src="{{ splunk_repository.repository_root }}/packages/{{ splunk_installation.package_file }}"
+        dest="{{ splunk_installation.remote_package_temp_path }}/{{ splunk_installation.package_file }}"
+        mode=600
+
+- name: Install Splunk package from tgz
+  unarchive: src="{{ splunk_installation.remote_package_temp_path }}/{{ splunk_installation.package_file }}"
+             dest=/opt
+             copy=no
+  when:  splunk_installation.package_format == "tgz"
+
+- name: Remove Splunk package
+  file: path="{{ splunk_installation.remote_package_temp_path }}/{{ splunk_installation.package_file }}"
+        state=absent
+  when: splunk_installation.delete_package_after_install != false
+
+- name: Set permissions for $SPLUNK_HOME
+  file: path="{{ splunk_installation.splunk_home_path }}"
+        owner=splunk
+        group=splunk
+        recurse=yes
+  when: splunk_installation.package_format == "tgz"
+
+- name: Start masternode
+  command: "{{ splunk_installation.splunk_home_path }}/bin/splunk start --accept-license --answer-yes"
+  become: true
+  become_user: splunk
+  become_method: su
+
+- name: Enable maintenance mode
+  command: "{{ splunk_installation.splunk_home_path }}/bin/splunk enable maintenance-mode --answer-yes -auth admin:{{ splunk_installation.admin_password }}"
+  become: true
+  become_user: splunk
+  become_method: su

@@ -10,4 +10,4 @@
 - name: Remove eventgen.conf from deployer
   file: path="{{ splunk_installation.splunk_home_path }}/etc/shcluster/apps/Splunk_TA_box/default/inputs.conf"
         state=absent
-  notify: shcluster bundle push 
+  notify: shcluster bundle push

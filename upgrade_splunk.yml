@@ -1,6 +1,38 @@
-- name: Upgrade Splunk on all hosts
-  hosts: "*:!repository"
-  remote_user: root
+---
+- hosts: "*:!repository"
+  user: root
+
+  pre_tasks:
+    - name: Stop all nodes
+      command: "{{ splunk_installation.splunk_home_path }}/bin/splunk stop"
+      become: true
+      become_user: splunk
+      become_method: su
+      when: "'deployer' not in group_names"
 
   roles:
-    - upgrade
+    - { role: upgrade_master, when: "'masternode' in group_names" }
+    - { role: upgrade_peers, when: "'masternode' not in group_names and 'deployer' not in group_names" }
+    - { role: upgrade_peers, when: "'deployer' in group_names" }
+
+  post_tasks:
+    - name: Start deployer
+      command: "{{ splunk_installation.splunk_home_path }}/bin/splunk start --accept-license --answer-yes"
+      become: true
+      become_user: splunk
+      become_method: su
+      when: "'deployer' in group_names"
+
+    - name: Start remaining nodes
+      command: "{{ splunk_installation.splunk_home_path }}/bin/splunk start --accept-license --answer-yes"
+      become: true
+      become_user: splunk
+      become_method: su
+      when: "'deployer' not in group_names and 'masternode' not in group_names"
+
+    - name: Disable maintenance mode
+      command: "{{ splunk_installation.splunk_home_path }}/bin/splunk disable maintenance-mode -auth admin:{{ splunk_installation.admin_password }}"
+      become: true
+      become_user: splunk
+      become_method: su
+      when: "'masternode' in group_names"
