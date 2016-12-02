@@ -6,3 +6,4 @@
     - conf/web
     - conf/inputs
     - conf/server
+    - conf/authentication
