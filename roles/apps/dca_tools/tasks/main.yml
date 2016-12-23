@@ -1,0 +1,16 @@
+---
+# Deployer
+- name: Create app dir on deployer
+  file: path="{{ splunk_installation.splunk_home_path }}/etc/shcluster/apps/dca_tools"
+        state=directory
+  when: "'deployer' in group_names"
+
+- name: Copy DCA Tools app to deployer
+  unarchive: src="{{ splunk_repository.repository_root }}/apps/{{ splunk_apps.dca_tools_tgz }}"
+          dest="{{ splunk_installation.splunk_home_path }}/etc/shcluster/apps"
+          copy=yes
+          owner=splunk
+          group=splunk
+  notify: shcluster bundle push
+  when: "'deployer' in group_names"
+

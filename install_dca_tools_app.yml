@@ -1,0 +1,7 @@
+---
+- name: Install DCA Tools app
+  hosts: deployer
+  remote_user: splunk
+
+  roles:
+    - roles/apps/dca_tools
