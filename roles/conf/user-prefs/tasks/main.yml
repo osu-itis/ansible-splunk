@@ -6,7 +6,7 @@
   ini_file: dest={{ splunk_conf_path }}/user-prefs.conf
             section=role_{{ item.role }}
             option="default_namespace"
-            value={{ item.namespace }}
+            value={{ item.default_namespace }}
             state=present
   with_items: "{{ splunk_user_prefs_conf.roles }}"
   when: user_roles.{{ item.role }} is defined

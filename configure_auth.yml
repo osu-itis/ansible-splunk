@@ -5,4 +5,4 @@
   roles:
     - conf/authentication
     - conf/authorize
-
+    - conf/user-prefs
