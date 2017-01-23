@@ -7,3 +7,4 @@
   command: "{{ splunk_installation.splunk_home_path }}/bin/splunk init shcluster-config -mgmt_uri https://{{ inventory_hostname }}:8089 -replication_port {{ splunk_server_conf.replication_port.port }} -auth admin:{{ splunk_installation.admin_password }}"
   become: yes
   become_user: splunk
+  register: shc_init_completed

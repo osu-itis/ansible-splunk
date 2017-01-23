@@ -3,10 +3,10 @@
 - name: Copy splunkweb cert
   copy: src="{{ splunk_repository.repository_root }}/ssl/{{ splunk_web_conf.settings.certFile }}"
         dest="/opt/splunk/etc/auth/splunkweb/{{ splunk_web_conf.settings.certFile }}"
-        mode=600
+        mode=0600
   when: splunk_web_conf.settings.certFile is defined
 - name: Copy splunkweb key
   copy: src="{{ splunk_repository.repository_root }}/ssl/{{ splunk_web_conf.settings.keyFile }}"
         dest="/opt/splunk/etc/auth/splunkweb/{{ splunk_web_conf.settings.keyFile }}"
-        mode=600
+        mode=0600
   when: splunk_web_conf.settings.keyFile is defined

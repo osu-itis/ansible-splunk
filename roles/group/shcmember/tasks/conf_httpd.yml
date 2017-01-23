@@ -12,3 +12,4 @@
 
 - name: enable httpd
   service: name=apache2 state=running enabled=yes
+  register: httpd_configured
