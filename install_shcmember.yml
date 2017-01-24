@@ -15,4 +15,4 @@
       command: "{{ splunk_installation.splunk_home_path }}/bin/splunk restart"
       become: yes
       become_user: splunk
-      when: shc_init_complete|succeeded
+      when: shc_init_completed|succeeded

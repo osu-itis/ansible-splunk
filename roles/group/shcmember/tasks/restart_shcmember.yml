@@ -5,4 +5,4 @@
 
 - name: Run splunk restart
   command: "{{ splunk_installation.splunk_home_path }}/bin/splunk restart"
-  when: httpd_started|succeeded or shc_init_complete|succeeded
+  when: httpd_configured|succeeded or shc_init_completed|succeeded
