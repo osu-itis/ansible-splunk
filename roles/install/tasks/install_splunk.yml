@@ -41,4 +41,5 @@
         owner=splunk
         group=splunk
         recurse=yes
+  register: splunk_file_copy_complete
   when: splunk_installation.package_format == "tgz"

@@ -7,3 +7,4 @@
 - name: Enable Splunk boot-start
   command: "{{ splunk_installation.splunk_home_path }}/bin/splunk enable boot-start -user splunk --answer-yes --accept-license"
   register: enable_splunk_boot_start
+  when: splunk_file_copy_complete|succeeded or splunk_file_copy_complete|skipped

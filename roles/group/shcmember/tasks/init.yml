@@ -8,4 +8,4 @@
   become: yes
   become_user: splunk
   register: shc_init_completed
-  when: httpd_configured|succeeded
+  when: httpd_configured|succeeded or httpd_configured|skipped
