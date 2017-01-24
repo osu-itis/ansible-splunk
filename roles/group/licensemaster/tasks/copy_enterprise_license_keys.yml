@@ -6,7 +6,7 @@
 - name: Create licenses/enterprise directory
   file: path="{{ splunk_installation.splunk_home_path }}/etc/licenses/enterprise"
         state=directory
-        mode=700
+        mode=0700
         owner=splunk
         group=splunk
 

@@ -1,7 +1,7 @@
 ---
 
 - name: Get serverName
-  shell: "grep serverName {{ splunk_installation.splunk_home_path }}/etc/system/local/server.conf | cut -c14-"
+  command: "grep serverName {{ splunk_installation.splunk_home_path }}/etc/system/local/server.conf | cut -c14-"
   register: splunk_servername
 
 - name: Fetch distServerKeys from all Servers
