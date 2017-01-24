@@ -6,6 +6,7 @@
 - name: Run bootstrap shcluster-captain
   command: "{{ splunk_installation.splunk_home_path }}/bin/splunk bootstrap shcluster-captain -servers_list {{ groups['shcmember'] | create_shcluster_mgmt_uri_servers }} -auth admin:{{ splunk_installation.admin_password }}"
   run_once: true
+  register: bootstrap_shcluster_captain
   become: yes
   become_user: splunk
   tags:
