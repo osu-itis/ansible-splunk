@@ -1,7 +1,7 @@
 ---
 
 - name: Get serverName
-  command: "grep serverName {{ splunk_installation.splunk_home_path }}/etc/system/local/server.conf | cut -c14-"
+  shell: "grep serverName {{ splunk_installation.splunk_home_path }}/etc/system/local/server.conf | cut -c14-"
   register: splunk_servername
   tags:
     - skip_ansible_lint
