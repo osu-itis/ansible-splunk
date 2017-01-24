@@ -11,3 +11,4 @@
   become_user: splunk
   tags:
     - bootstrap
+  when: shc_init_completed|succeeded

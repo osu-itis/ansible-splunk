@@ -2,7 +2,7 @@
 
 - name: enable ssl module
   command: "a2enmod ssl"
-  register: enable_apache_ssl_module
+  when: httpd_installed|succeeded
 
 - name: Copy Splunk SSL cert
   copy: src="{{ splunk_repository.repository_root }}/certs/{{ splunk_installation.ssl_cert }}"
