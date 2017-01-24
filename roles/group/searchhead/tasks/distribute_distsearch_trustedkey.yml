@@ -4,5 +4,6 @@
 #####################################################################################################################
 
 - name: Copy Keys for distributed search
-  local_action: "shell scp -r {{ splunk_repository.repository_root }}/distServerKeys/{{ ansible_hostname }}* splunk@{{ item }}:{{ splunk_installation.splunk_home_path }}/etc/auth/distServerKeys"
+  local_action: "command scp -r {{ splunk_repository.repository_root }}/distServerKeys/{{ ansible_hostname }}* splunk@{{ item }}:{{ splunk_installation.splunk_home_path }}/etc/auth/distServerKeys"
+  register: copy_dist_search_keys
   with_items: "{{ splunk_distsearch_conf.distributedSearch.servers | create_distsearch_serverlist }}"
