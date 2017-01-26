@@ -1,6 +1,7 @@
 ---
 - name: install httpd packages
   apt: name={{item}} state=present update_cache=yes
+  register: httpd_installed
   with_items:
     - apache2
     - libapache2-mod-auth-cas

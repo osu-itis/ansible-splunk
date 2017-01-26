@@ -3,4 +3,4 @@
   command: "./splunk apply shcluster-bundle restart --answer-yes -target https://{{ item }}:8089 -auth admin:{{ splunk_installation.admin_password }}"
   args:
     chdir: "{{ splunk_installation.splunk_home_path}}/bin"
-  with_items: groups['shcmember'][0]
+  with_items: "{{ groups['shcmember'][0] }}"

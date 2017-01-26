@@ -8,10 +8,22 @@
 
 # Instructions
 
-* See https://github.com/my2ndhead/ansible_playbook_splunk/wiki
-
 * clone group_vars from private repository
+```
+ - install_splunk.yml
+ - configure_licensemaster.yml
+ - configure_peernode.yml
+ - ansible peernode -i ../inventory/splunk -a "/opt/splunk/bin/splunk start" -u splunk
+ - configure_masternode.yml
+ - configure_deployer.yml
+ - install_shcmember.yml
+ - configure_shcmember.yml
+ - configure_dmc.yml
+ - ansible all -i ../inventory/splunk -a "/opt/splunk/bin/splunk restart" -u splunk
+```
+# SSL WARNING!
 
+- If you specify sslKeysFilePassword these playbooks WILL NOT create the matching server.pem and THINGS WILL NOT WORK PROPERLY.  You MUST invoke splunk's `createssl server-cert` by hand on each node and feed it the proper password!
 
 # Heavy Forwarder with keepalived
 

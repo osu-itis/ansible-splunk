@@ -1,6 +1,7 @@
 ---
 - name: install httpd packages
   yum: name={{item}} state=present update_cache=yes
+  register: httpd_installed
   with_items:
     - httpd
     - libapache2-mod-auth-cas

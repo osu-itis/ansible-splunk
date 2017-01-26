@@ -18,4 +18,5 @@
   file:
     path="{{ splunk_installation.splunk_home_path }}/etc/master-apps/Splunk_TA_citrix-netscaler/default/database.conf"
     state=absent
+  register: master_cleanup_complete
 

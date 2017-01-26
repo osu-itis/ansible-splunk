@@ -8,3 +8,4 @@
   file:
     path="{{ splunk_installation.splunk_home_path }}/etc/shcluster/apps/Splunk_TA_citrix-netscaler/default/eventgen.conf"
     state=absent
+  register: deployer_cleanup_complete

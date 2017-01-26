@@ -4,5 +4,8 @@
 #####################################################################################################################
 
 - name: Copy Keys for distributed search
-  local_action: "shell scp -r {{ splunk_repository.repository_root }}/distServerKeys/{{ ansible_hostname }}* splunk@{{ item }}:{{ splunk_installation.splunk_home_path }}/etc/auth/distServerKeys"
+  local_action: "shell scp -r {{ splunk_repository.repository_root }}/distServerKeys/{{ ansible_hostname }} splunk@{{ item }}:{{ splunk_installation.splunk_home_path }}/etc/auth/distServerKeys/"
   with_items: "{{ splunk_distsearch_conf.distributedSearch.servers | create_distsearch_serverlist }}"
+  tags:
+    - skip_ansible_lint
+# linting disabled because there's no applicable pre-req

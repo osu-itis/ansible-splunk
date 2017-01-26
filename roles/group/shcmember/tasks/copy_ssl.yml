@@ -2,17 +2,18 @@
 
 - name: enable ssl module
   command: "a2enmod ssl"
+  when: httpd_installed|succeeded
 
 - name: Copy Splunk SSL cert
   copy: src="{{ splunk_repository.repository_root }}/certs/{{ splunk_installation.ssl_cert }}"
         dest="/etc/ssl/certs/splunk-cert.crt"
-        mode=644
+        mode=0644
 
 - name: Copy Splunk SSL key
   copy: src="{{ splunk_repository.repository_root }}/certs/{{ splunk_installation.ssl_key }}"
         dest="/etc/ssl/certs/splunk-cert.key"
-        mode=644
+        mode=0644
 - name: Copy Splunk SSL CA cert
   copy: src="{{ splunk_repository.repository_root }}/certs/{{ splunk_installation.ssl_cacert }}"
         dest="/etc/ssl/certs/splunk-ca-cert.crt"
-        mode=644
+        mode=0644

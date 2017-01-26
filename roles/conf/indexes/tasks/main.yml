@@ -36,6 +36,10 @@
   notify: splunk restart
   when: indexes is defined
 
+- name: splunk start
+  command: "{{ splunk_installation.splunk_home_path }}/bin/splunk start"
+  when: cluster_indexes is defined or cluster_system_indexes is defined
+
 - name: push bundle to indexer cluster members
   command: "{{ splunk_installation.splunk_home_path }}/bin/splunk apply cluster-bundle --answer-yes -auth admin:{{ splunk_installation.admin_password }}"
   when: cluster_indexes is defined or cluster_system_indexes is defined
