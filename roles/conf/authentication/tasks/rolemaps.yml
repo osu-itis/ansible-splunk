@@ -9,7 +9,7 @@
             value={{ item.group }}
             state=present
   with_items: "{{ splunk_auth_conf.rolemaps }}"
-  when: splunk_auth_conf.strategies.{{ item.strategy }} is defined
+  when: item.remove is undefined
 
 - name: "Configure authentication.conf [roleMap_<strategy>] - state=absent (default)"
   ini_file: dest={{ splunk_conf_path }}/authentication.conf
@@ -17,5 +17,5 @@
             option={{ item.role }}
             state=absent
   with_items: "{{ splunk_auth_conf.rolemaps }}"
-  when: splunk_auth_conf.strategies.{{ item.strategy }} is undefined
+  when: item.remove is defined
 
