@@ -1,3 +1,7 @@
+# run this on the DMC to apply changes:  | rest splunk_server=* /services/authentication/providers/services/_reload
+# can make this automatic if we want to..
+
+
 - name: Install splunk shcmember
   hosts: shcmember
   user: splunk

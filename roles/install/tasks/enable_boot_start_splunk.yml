@@ -5,4 +5,5 @@
         state=absent
 
 - name: Enable Splunk boot-start
-  shell: "{{ splunk_installation.splunk_home_path }}/bin/splunk enable boot-start -user splunk --answer-yes --accept-license"
+  command: "{{ splunk_installation.splunk_home_path }}/bin/splunk enable boot-start -user splunk --answer-yes --accept-license"
+  when: splunk_file_copy_complete|succeeded or splunk_file_copy_complete|skipped

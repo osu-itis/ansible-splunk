@@ -9,6 +9,6 @@
   file: path={{ splunk_conf_path }}/outputs.conf
         owner=splunk
         group=splunk
-        mode=600
+        mode=0600
         state=touch
   changed_when: false

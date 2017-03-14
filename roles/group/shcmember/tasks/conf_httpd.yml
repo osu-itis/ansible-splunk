@@ -1,5 +1,6 @@
 ---
-- apache2_module: state=present name={{item}}
+- name: install apache modules
+  apache2_module: state=present name={{item}}
   with_items:
     - proxy
     - proxy_http
@@ -7,6 +8,7 @@
 
 - name: configure reverse proxy vhost
   template: src=templates/000-default.conf.j2 dest=/etc/apache2/sites-available/000-default.conf owner=root group=root mode=0644
+  register: httpd_configured
   notify:
     - restart httpd
 

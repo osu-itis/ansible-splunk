@@ -2,13 +2,15 @@
 - name: Copy Splunk package
   copy: src="{{ splunk_repository.repository_root }}/packages/{{ splunk_installation.package_file }}"
         dest="{{ splunk_installation.remote_package_temp_path }}/{{ splunk_installation.package_file }}"
-        mode=600
+        mode=0600
+  register: splunk_copy_pkg
 
 - name: Ensure Splunk is stopped
   command: "{{ splunk_installation.splunk_home_path }}/bin/splunk stop"
   become: true
   become_user: splunk
   become_method: su
+  when: splunk_copy_pkg|succeeded or splunk_copy_pkg|skipped
 
 - name: Install Splunk package from tgz
   unarchive: src="{{ splunk_installation.remote_package_temp_path }}/{{ splunk_installation.package_file }}"

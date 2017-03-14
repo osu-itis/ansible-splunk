@@ -34,5 +34,5 @@
 
   - name: Set repository directory mode
     file: path={{ splunk_repository.repository_root }}
-          mode=750
+          mode=0750
 

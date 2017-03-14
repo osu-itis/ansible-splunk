@@ -11,4 +11,6 @@
       command: "{{ splunk_installation.splunk_home_path }}/bin/splunk restart"
       become: yes
       become_user: splunk
+      tags:
+        - skip_ansible_lint
 
