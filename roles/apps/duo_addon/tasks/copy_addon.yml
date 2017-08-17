@@ -14,6 +14,7 @@
     owner=splunk
     group=splunk
   when: "'deployer' in group_names"
+  register: deployer_tgz_push
 
 # Masternode
 - name: Create app dir on masternode
@@ -30,6 +31,7 @@
     owner=splunk
     group=splunk
   when: "'masternode' in group_names"
+  register: masternode_tgz_push
 
 # Heavyforwarder
 - name: Create app dir on heavyforwarder

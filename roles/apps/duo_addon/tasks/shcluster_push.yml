@@ -4,3 +4,4 @@
   args:
     chdir: "{{ splunk_installation.splunk_home_path}}/bin"
   with_items: "{{ groups['shcmember'][0] }}"
+  when: deployer_tgz_push|succeeded
