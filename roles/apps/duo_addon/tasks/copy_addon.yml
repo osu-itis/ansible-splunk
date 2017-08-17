@@ -1,0 +1,48 @@
+---
+# Deployer
+- name: Create app dir on deployer
+  file:
+    path="{{ splunk_installation.splunk_home_path }}/etc/shcluster/apps/duo_splunkapp"
+    state=directory
+  when: "'deployer' in group_names"
+
+- name: Copy Duo app to deployer
+  unarchive:
+    src="{{ splunk_repository.repository_root }}/apps/{{ splunk_apps.duo_splunk_app_tgz }}"
+    dest="{{ splunk_installation.splunk_home_path }}/etc/shcluster/apps"
+    copy=yes
+    owner=splunk
+    group=splunk
+  when: "'deployer' in group_names"
+
+# Masternode
+- name: Create app dir on masternode
+  file:
+    path="{{ splunk_installation.splunk_home_path }}/etc/master-apps/duo_splunkapp"
+    state=directory
+  when: "'masternode' in group_names"
+
+- name: Copy Duo ap to masternode
+  unarchive:
+    src="{{ splunk_repository.repository_root }}/apps/{{ splunk_apps.duo_splunk_app_tgz }}"
+    dest="{{ splunk_installation.splunk_home_path }}/etc/master-apps/"
+    copy=yes
+    owner=splunk
+    group=splunk
+  when: "'masternode' in group_names"
+
+# Heavyforwarder
+- name: Create app dir on heavyforwarder
+  file:
+    path="{{ splunk_installation.splunk_home_path }}/etc/apps/duo_splunkapp"
+    state=directory
+  when: "'heavyforwarder' in group_names"
+
+- name: Copy Duo app to heavyforwarder
+  unarchive:
+    src="{{ splunk_repository.repository_root }}/apps/{{ splunk_apps.duo_splunk_app_tgz }}"
+    dest="{{ splunk_installation.splunk_home_path }}/etc/apps/"
+    copy=yes
+    owner=splunk
+    group=splunk
+  when: "'heavyforwarder' in group_names"
