@@ -1,0 +1,8 @@
+---
+- include: copy_addon.yml
+
+- include: shcluster_push.yml
+  when: "'deployer' in group_names"
+
+- include: cluster_push.yml
+  when: "'masternode' in group_names"
