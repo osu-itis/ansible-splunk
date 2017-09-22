@@ -11,7 +11,7 @@
         - /mnt/colddb
 
     - name: reload snmpd
-      service: name=snmpd state=restarted
+      service: name=snmpd state=restarted enabled=yes
 
 
     - name: add cron jobs to clear out frozendb files after 180 days
