@@ -13,9 +13,13 @@
     - name: reload snmpd
       service: name=snmpd state=restarted
 
+
     - name: add cron jobs to clear out frozendb files after 180 days
-      file:
+      copy:
         dest: /etc/cron.daily/frozen
+        owner: root
+        group: root
+        mode: 0755
         content: |
           #!/bin/sh
 
