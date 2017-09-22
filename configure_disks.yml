@@ -1,0 +1,29 @@
+- name: Configure splunk peernode disk monitoring and cleanup
+  hosts: peernode
+  user: root
+
+  tasks:
+    - name: change snmpd config to add disks
+      lineinfile: dest=/etc/snmp/snmpd.conf insertafter=EOF line="disk {{item}}" state=present
+      with_items:
+        - /
+        - /mnt/db
+        - /mnt/colddb
+
+    - name: reload snmpd
+      service: name=snmpd state=restarted
+
+
+    - name: add cron jobs to clear out frozendb files after 180 days
+      copy:
+        dest: /etc/cron.daily/frozen
+        owner: root
+        group: root
+        mode: 0755
+        content: |
+          #!/bin/sh
+
+          find /mnt/colddb/defaultdb/frozendb/ -mtime +180 -name 'rb*' -print0 | xargs -r0 rm -rf --
+          find /mnt/colddb/defaultdb/frozendb/ -mtime +180 -name 'db*' -print0 | xargs -r0 rm -rf --
+
+
