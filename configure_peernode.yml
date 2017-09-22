@@ -10,7 +10,7 @@
 
   tasks:
     - name: change snmpd config to add disks
-      lineinfile: path=/etc/snmp/snmpd.conf insertafter=EOF line="disk {{item}}" state=present
+      lineinfile: dest=/etc/snmp/snmpd.conf insertafter=EOF line="disk {{item}}" state=present
       with_items:
         - /
         - /mnt/db
