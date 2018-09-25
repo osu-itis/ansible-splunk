@@ -3,6 +3,5 @@
   user: splunk
 
   roles:
-    - conf/web
     - conf/outputs
     - conf/server
