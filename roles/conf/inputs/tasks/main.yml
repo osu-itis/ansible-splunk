@@ -1,6 +1,11 @@
 ---
 - include: splunktcp/port.yml
+  when: splunk_inputs_conf.splunktcp is defined
 - include: splunktcp-ssl/port.yml
-- include: SSL/password.yml
-- include: SSL/rootCA.yml
-- include: SSL/serverCert.yml
+  when: "splunk_inputs_conf.splunktcpssl is defined"
+- include: "{{ item }}"
+  when: splunk_inputs_conf.SSL is defined
+  with_items:
+    - SSL/password.yml
+    - SSL/rootCA.yml
+    - SSL/serverCert.yml
