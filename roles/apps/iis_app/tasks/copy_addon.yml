@@ -1,0 +1,33 @@
+---
+ Deployer
+- name: Create app dir on deployer
+  file: path="{{ splunk_installation.splunk_home_path }}/etc/shcluster/apps/Splunk_TA_microsoft-iis"
+        state=directory
+  when: "'deployer' in group_names"
+
+- name: Copy Microsoft IIS add-on to deployer
+  unarchive: src="{{ splunk_repository.repository_root }}/apps/{{ splunk_apps.iis_app_tgz }}"
+          dest="{{ splunk_installation.splunk_home_path }}/etc/shcluster/apps"
+          copy=yes
+          owner=splunk
+          group=splunk
+  notify: shcluster bundle push
+  when: "'deployer' in group_names"
+
+# Masternode
+- name: Create app dir on masternode
+  file:
+    path="{{ splunk_installation.splunk_home_path }}/etc/master-apps/Splunk_TA_microsoft-iis"
+    state=directory
+  when: "'masternode' in group_names"
+
+- name: Copy Microsoft IIS add-on to masternode
+  unarchive:
+    src="{{ splunk_repository.repository_root }}/apps/{{ splunk_apps.iis_app_tgz }}"
+    dest="{{ splunk_installation.splunk_home_path }}/etc/master-apps/"
+    copy=yes
+    owner=splunk
+    group=splunk
+  when: "'masternode' in group_names"
+  register: masternode_tgz_push
+

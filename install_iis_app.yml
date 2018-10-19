@@ -1,0 +1,7 @@
+---
+- name: Install Microsoft IIS app add-on
+  hosts: deployer:heavyforwarder:masternode
+  remote_user: splunk
+
+  roles:
+    - roles/apps/iis_app
