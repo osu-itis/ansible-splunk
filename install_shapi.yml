@@ -1,0 +1,11 @@
+- name: Install splunk search head for api only
+  hosts: shapi
+  user: root
+
+  roles:
+    - conf/web
+    - conf/outputs
+    - conf/server
+    - conf/authentication
+    - conf/server
+

@@ -1,0 +1,10 @@
+- name: Configure splunk shapi host
+  hosts: shapi
+  user: splunk
+
+  roles:
+    - conf/web
+    - conf/outputs
+    - conf/server
+    - conf/indexes
+    - conf/alert_actions
