@@ -6,7 +6,7 @@
   when: "'deployer' in group_names"
 
 - name: Copy InfoSec app to deployer
-  unarchive: src="{{ splunk_repository.repository_root }}/apps/{{ splunk_apps.infosec_app_tgz }}"
+  unarchive: src="{{ splunk_repository.repository_root }}/apps/{{ splunk_apps.infosec_tgz }}"
           dest="{{ splunk_installation.splunk_home_path }}/etc/shcluster/apps"
           copy=yes
           owner=splunk
