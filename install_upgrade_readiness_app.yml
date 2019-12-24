@@ -1,0 +1,8 @@
+---
+- name: Install upgrade readiness app
+  hosts: deployer
+  remote_user: splunk
+
+  roles:
+    - roles/apps/upgrade_readiness_app
+

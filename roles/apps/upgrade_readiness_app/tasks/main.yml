@@ -1,0 +1,16 @@
+---
+# Deployer
+- name: Create app dir on deployer
+  file: path="{{ splunk_installation.splunk_home_path }}/etc/shcluster/apps/upgrade_readiness_app"
+        state=directory
+  when: "'deployer' in group_names"
+
+- name: Copy Upgrade Readiness App to deployer
+  unarchive: src="{{ splunk_repository.repository_root }}/apps/{{ splunk_apps.upgrade_app_tgz }}"
+          dest="{{ splunk_installation.splunk_home_path }}/etc/shcluster/apps"
+          copy=yes
+          owner=splunk
+          group=splunk
+  notify: shcluster bundle push
+  when: "'deployer' in group_names"
+

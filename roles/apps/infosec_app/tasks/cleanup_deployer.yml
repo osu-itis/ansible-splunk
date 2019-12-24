@@ -1,0 +1,5 @@
+---
+- name: Remove inputs.conf from deployer
+  file: path="{{ splunk_installation.splunk_home_path }}/etc/shcluster/apps/Splunk_SA_CIM/default/inputs.conf"
+        state=absent
+  notify: shcluster bundle push

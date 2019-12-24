@@ -1,0 +1,6 @@
+---
+- include: copy_addons.yml
+
+- include: cleanup_deployer.yml
+  when: "'deployer' in group_names"
+

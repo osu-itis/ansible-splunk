@@ -1,0 +1,8 @@
+---
+- name: Install InfoSec app and required addons
+  hosts: deployer
+  remote_user: splunk
+
+  roles:
+    - roles/apps/infosec_app
+
