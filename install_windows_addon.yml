@@ -3,4 +3,4 @@
   remote_user: splunk
 
   roles:
-    - roles/apps/ipfix_addon
+    - roles/apps/Splunk_TA_windows
