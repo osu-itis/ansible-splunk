@@ -1,0 +1,25 @@
+- name: Configure splunk peernode linux tunables
+  hosts: peernode
+  user: root
+
+  tasks:
+    - name: add script blob to disable THP on boot
+      blockinfile:
+        path: /etc/rc.local
+        insertbefore: "exit 0" 
+        block: |
+          if test -f /sys/kernel/mm/transparent_hugepage/enabled; then
+            echo never > /sys/kernel/mm/transparent_hugepage/enabled
+          fi
+          if test -f /sys/kernel/mm/transparent_hugepage/defrag; then
+            echo never > /sys/kernel/mm/transparent_hugepage/defrag
+          fi
+    - name: set splunk ulimit fd
+      blockinfile:
+        path: /etc/security/limits.d/splunk.conf
+        create: yes
+        block: |
+          splunk        hard    nofile    65535
+          splunk        soft    nofile    65535
+
+
