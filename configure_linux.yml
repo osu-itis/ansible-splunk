@@ -3,11 +3,12 @@
   user: root
 
   tasks:
-    - name: add script blob to disable THP on boot
+    - name: disable THP on boot via grub
       lineinfile:
         path: /etc/default/grub
-        regexp: ^'GRUB_CMDLINE_LINUX_DEFAULT='
+        regexp: '^GRUB_CMDLINE_LINUX_DEFAULT='
         line: 'GRUB_CMDLINE_LINUX_DEFAULT="quiet splash transparent_hugepage=never"'
+      notify: update grub
 
     - name: set splunk ulimit fd
       blockinfile:
@@ -28,3 +29,6 @@
         path: /etc/pam.d/common-session-noninteractive
         insertbefore: '# end of pam-auth-update config'
         line: session required        pam_limits.so
+  handlers:
+    - name: update grub
+      shell: /usr/sbin/update-grub
