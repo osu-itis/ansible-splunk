@@ -4,16 +4,11 @@
 
   tasks:
     - name: add script blob to disable THP on boot
-      blockinfile:
-        path: /etc/rc.local
-        insertbefore: "exit 0" 
-        block: |
-          if test -f /sys/kernel/mm/transparent_hugepage/enabled; then
-            echo never > /sys/kernel/mm/transparent_hugepage/enabled
-          fi
-          if test -f /sys/kernel/mm/transparent_hugepage/defrag; then
-            echo never > /sys/kernel/mm/transparent_hugepage/defrag
-          fi
+      lineinfile:
+        path: /etc/default/grub
+        regexp: ^'GRUB_CMDLINE_LINUX_DEFAULT='
+        line: 'GRUB_CMDLINE_LINUX_DEFAULT="quiet splash transparent_hugepage=never"'
+
     - name: set splunk ulimit fd
       blockinfile:
         path: /etc/security/limits.d/splunk.conf
@@ -22,4 +17,14 @@
           splunk        hard    nofile    65535
           splunk        soft    nofile    65535
 
+    - name: tell PAM to read limits
+      lineinfile:
+        path: /etc/pam.d/common-session
+        insertbefore: '# end of pam-auth-update config'
+        line: session required        pam_limits.so
 
+    - name: tell PAM to read limits non-interactive
+      lineinfile:
+        path: /etc/pam.d/common-session-noninteractive
+        insertbefore: '# end of pam-auth-update config'
+        line: session required        pam_limits.so
