@@ -1,0 +1,4 @@
+---
+- include: copy_addon.yml
+- include: install_pkgs.yml
+- include: copy_driver.yml

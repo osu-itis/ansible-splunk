@@ -1,0 +1,8 @@
+---
+# Heavy Forwarder
+- name: Copy jtds driver to heavyforwarder
+  unarchive: src="{{ splunk_repository.repository_root }}/apps/{{ splunk_apps.db_connect_driver }}"
+          dest="{{ splunk_installation.splunk_home_path }}/etc/apps/splunk_app_db_connect/drivers/"
+          copy=yes
+          owner=splunk
+          group=splunk

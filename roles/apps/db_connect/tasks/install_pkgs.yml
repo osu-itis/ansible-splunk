@@ -1,0 +1,13 @@
+---
+
+- name: install packages for dbconnect addon
+  apt: name={{item}} state=present update_cache=yes
+  with_items:
+    - openjdk-8-jre
+
+- name: set up java home envvar
+  lineinfile:
+    - path: /etc/environment
+    - line: 'JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"'
+    - state: present
+
