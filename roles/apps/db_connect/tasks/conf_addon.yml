@@ -1,0 +1,9 @@
+---
+  
+- name: Configure app files (local/*.conf)
+  copy:
+    - src: "{{ item }}"
+    - dest: "{{ splunk_installation.splunk_home_path }}/etc/apps/splunk_app_db_connect/local/"
+  with_fileglob:
+    - "*.conf"
+

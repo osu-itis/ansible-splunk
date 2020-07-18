@@ -1,0 +1,22 @@
+---
+- name: Install DB Connect dependencies
+  hosts: heavyforwarder
+  remote_user: root
+  tasks:
+   - name: install packages for dbconnect addon
+     apt: name={{item}} state=present update_cache=yes
+     with_items:
+       - openjdk-8-jre
+
+   - name: set up java home envvar
+     lineinfile:
+       - path: /etc/environment
+       - line: 'JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"'
+       - state: present
+
+- name: Install DB connect app
+  hosts: heavyforwarder
+  remote_user: splunk
+
+  roles:
+    - roles/apps/db_connect

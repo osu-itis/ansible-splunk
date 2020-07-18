@@ -1,0 +1,4 @@
+---
+- include: copy_addon.yml
+- include: copy_driver.yml
+- include: conf_addon.yml

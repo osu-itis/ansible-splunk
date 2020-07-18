@@ -1,0 +1,12 @@
+---
+# Heavy Forwarder
+- name: Create app dir on heavyforwarder
+  file: path="{{ splunk_installation.splunk_home_path }}/etc/apps/splunk_app_db_connect"
+        state=directory
+
+- name: Copy box add-on to heavyforwarder
+  unarchive: src="{{ splunk_repository.repository_root }}/apps/{{ splunk_apps.db_connect_tgz }}"
+          dest="{{ splunk_installation.splunk_home_path }}/etc/apps/"
+          copy=yes
+          owner=splunk
+          group=splunk
